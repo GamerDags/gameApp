@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game App</title>
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
+  <script type="text/x-handlebars-template" id="error-template"></script>
+
+  <script id="game-list-template" type="text/x-handlebars-template">
+  <li class="game-items container" data-gameid={{game_id}}>
+    <div class="game-container">
+      <img src={{image_url}}>
+      <div class="game-overlay">
+        <h3>{{game-title}}</h3>
+        <p>{{game-company}}</p>
+        <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p>
+      </div>
+    </div>
+  </li></script>
+
+  <!-- Single Game View -->
+  <script id="game-detail-template" type="text/x-handlebars-template">
+  <div class="game-container detail-view">
+    <h3>{{game-title}}</h3>
+    <p>{{game-company}}</p>
+    <img src="{{image_url}}">
+    <p>{{description}}</p>
+    </div>
+  </div>
+</script>
+</head>
+
+<body>
+  <!-- Nav Menu -->
+  <header class="header">
+    <h1>Game App</h1>
+    <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
+    <br>
+    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
+  </header>
+  <main>
+  <setion class="form container">
+    <h2>Choose Your Destiny</h2>
+  <form>
+    <div>
+    <ul>
+<li>question1</li>
+<input type="radio" class="q1">
+<input type="radio" class="q1">
+<input type="radio" class="q1">
+<input type="radio" class="q1">
+<input type="radio" class="q1">
+<li>question2</li>
+<input type="radio" id="q2">
+<li>question3</li>
+<input type="radio" id="q3">
+<li>question4</li>
+<input type="radio" id="q4">
+<li>question5</li>
+<input type="radio" id="q5">
+<li>question6</li>
+<input type="radio" id="q6">
+<li>question7</li>
+<input type="radio" id="q7">
+<li>question8</li>
+<input type="radio" id="q8">
+  </ul>
+  <div><button type="submit">SUBMIT</button></div>
+</div>
+</form>
+  </setion>
+  </main>
+  <footer></footer>
+  <script src=“https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js“></script>
+<script src="/scripts/controller/games.js"></script>
+<script src="/scripts/view/homeView.js"></script>
+<script src="/scripts/view/myResults.js"></script>
+<script src="/scripts/view/oneGame.js"></script>
+<script src="/scripts/view/resultsView.js"></script>
+<script src="/scripts/view/routes.js"></script>
+</body>
+</html>
