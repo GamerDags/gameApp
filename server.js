@@ -49,9 +49,27 @@ app.get('/', (req, res) => {
     .catch(console.error);
 })
 
-let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
-let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres${query}&limit=25`;
+// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
+//   console.log (url); This one works don't touch.
+
+let query = '&filter[first_release_date][lt]=1104537600000&filter[rating][gte]=75&filter[genres][eq]=5';
+let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
   console.log (url);
+
+// let query = '&filter[first_release_date][gt]=1500619813000&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
+//   console.log (url);  changing the 'gt'/'lt' in first_release_date will work in this.
+
+// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/release_dates/?fields=*&filter[platform][eq]=48&order=date:asc&filter[date][gt]=1500619813000&expand=game`;
+
+//   console.log (url); 
+  //  this works but the let url appears to adjust the date the games are filtered by, not the let query.
+
+// let query = '&count?filter[release_dates.platform][eq]=72';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,release_dates${query}&limit=25`;
+//   console.log (url);   trying to figur out filterin by date test 1.
 
   //get request from API
   superagent.get(url)
