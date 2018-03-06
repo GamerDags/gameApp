@@ -17,22 +17,17 @@ const TOKEN = process.env.TOKEN;
 
 const API_KEY = 'd5f8b5029dfc0e40ac54647a962a9e42';
 
-//database setup - is this still needed?
-// const client = igdb(API_KEY);
-// client.connect();
-// client.on('error', err => console.error(err));
-
 //Application Middleware
 app.use(cors());
 
 //API Endpoints
 app.get('/', (req, res) => {
 
-  let query = '&filter[esrb][eq]=2,3';
+  let query = '';
   //add query values from homepage form
   if(req.query.age) query += `&filter[esrb][eq]=${req.query.age}`;
   if(req.query.genre) query += `&filter[genre][eq]=${req.query.genre}`;
-  if(req.query.console) query += `&filter[isbn][eq]=${req.query.isbn}`;
+  if(req.query.consoles) query += `&filter[isbn][eq]=${req.query.isbn}`;
   if(req.query.ratings) query += `&filter[total_rating_count][lt]=${req.query.ratings}`;
   if(req.query.score && req.query.score < 50) query += `&filter[rating][gte]=${req.query.score}`;
   if(req.query.score && req.query.score > 50) query += `&filter[rating][lte]=${req.query.score}`;
