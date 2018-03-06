@@ -43,39 +43,96 @@
     <br>
     <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
   </header>
+  <section>
+    <form id="login-form">
+      <div class="box">
+        <label for="userName">User Name</label>
+        <input name="userName" type="text">
+        <button id="login">Login</button>
+      </div>
+    
+    </form>
+  </section>
   <main>
   <setion class="form container">
     <h2>Choose Your Destiny</h2>
   <form>
     <div>
     <ul>
-<li>question1</li>
-<input type="radio" class="q1">
-<input type="radio" class="q1">
-<input type="radio" class="q1">
-<input type="radio" class="q1">
-<input type="radio" class="q1">
-<li>question2</li>
-<input type="radio" id="q2">
-<li>question3</li>
-<input type="radio" id="q3">
-<li>question4</li>
-<input type="radio" id="q4">
-<li>question5</li>
-<input type="radio" id="q5">
+<li>What's your age range?</li>
+<input type="radio" name="q1">Kid
+<input type="radio" name="q1">Teen
+<input type="radio" name="q1">Adult(18+)
+<section>
+     <form id ="birthDate">
+       <label for="userBirthDate">Birthday:</label>
+       <input name="userBirthDate" id="date" type="date" required>
+
+       <button type="submit">Submit</button>
+     </form>
+   </section>
+<li>Why are you playing today?</li>
+<input type="radio" name="q2">Try something new
+<input type="radio" name="q2">Stretch my mind
+<input type="radio" name="q2">Compete(with friends)
+<input type="radio" name="q2">Blow stuff up!
+<input type="radio" name="q2">Adventure
+<li>What type of system are you gaming on?</li>
+<input type="radio" name="q3">Console
+<input type="radio" name="q3">Computer
+<input type="radio" name="q3">Handheld
+<input type="radio" name="q3">All
+<li>What generation games do you want to play?</li>
+<input type="radio" name="q4">First Gen
+<input type="radio" name="q4">Retro
+<input type="radio" name="q4">Revolution
+<input type="radio" name="q4">Modern
+<input type="radio" name="q4">Present/Upcoming
+<li>Would you play a really bad game just because?</li>
+<input type="radio" name="q5">Oh, absolutely!
+<input type="radio" name="q5">Yes
+<input type="radio" name="q5">No
+<input type="radio" name="q5">You disgust me!
 <li>question6</li>
-<input type="radio" id="q6">
-<li>question7</li>
-<input type="radio" id="q7">
-<li>question8</li>
-<input type="radio" id="q8">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
   </ul>
-  <div><button type="submit">SUBMIT</button></div>
+  <div><button type="submit">SEARCH</button></div>
 </div>
 </form>
   </setion>
+
+  <section class="about-us container">
+    <h3 class="about-view">Meet the team.</h3>
+    <div class="top">
+      <div>
+        <h4>Jeremy Crawford</h4>
+        <img src="img/.png">
+        <p>about Jeremy</p>
+        <h4>Mario Flores</h4>
+        <img src="img/.png">
+        <p>about Mario</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>
+      <h4>Zachary Schumpert</h4>
+        <img src="img/.png">
+        <p>about Zachary</p>
+      <h4>Josh West</h4>
+        <img src="img/.png">
+        <p>about Josh</p>
+    </div>
+    </div>
+  </section>
+
   </main>
-  <footer></footer>
+  <footer>
+
+  </footer>
   <script src=“https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js“></script>
 <script src="/scripts/controller/games.js"></script>
 <script src="/scripts/view/homeView.js"></script>
