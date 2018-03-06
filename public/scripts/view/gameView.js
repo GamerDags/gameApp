@@ -64,7 +64,7 @@ var app = app || {};
     $('#search-list').empty();
 
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
-    $('.detail-button a').text('Add to list').attr('href', '/myList').catch(;
+    $('.detail-button a').text('Add to list').attr('href', '/myList');
     //$('.detail-button').on('click', function(e) {needs filled in}
   }
 

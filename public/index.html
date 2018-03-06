@@ -104,6 +104,11 @@
     </div>
     </form>
   </section>
+  <section class="search-results container">
+      <section>
+        <ul id="search-list"></ul>
+      </section>
+    </section>
 
   <section class="about-us container">
     <h3 class="about-view">Meet the team.</h3>
@@ -129,18 +134,23 @@
     </div>
   </section>
 
+  <section class="error-view container">
+      <h2 class="view-title">Poop... that didn't work</h2>
+      <section id="error-message"></section>
+  </section>
+
   </main>
   <footer>
 
   </footer>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="/scripts/controller/games.js"></script>
-<script src="/scripts/view/homeView.js"></script>
-<script src="/scripts/view/myResults.js"></script>
-<script src="/scripts/view/oneGame.js"></script>
-<script src="/scripts/view/resultsView.js"></script>
+<script src="/scripts/view/gameView.js"></script>
+<script src="/scripts/view/myListView.js"></script>
+<script src="/scripts/view/errorView.js"></script>
 <script src="/scripts/view/routes.js"></script>
-<script>app.homeView.initSearchForm()</script>
+<!-- <script>app.gameView.initSearchForm()</script> -->
 </body>
 </html>
