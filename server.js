@@ -27,11 +27,22 @@ app.use(cors());
 
 //API Endpoints
 app.get('/', (req, res) => {
-  let url = 'https://api-2445582011268.apicast.io/games/meta';
+  
 
   let query = '';
   //add query values from homepage form
+  if(req.query.age) query += `&filter[esrb][eq]=${req.query.age}`;
+  if(req.query.genre) query += `&filter[genre][eq]=${req.query.genre}`;
+  if(req.query.console) query += `&isbn[eq]=${req.query.isbn}`;
+  if(req.query.ratings) query += `&[total_rating_count][lt]=${req.query.ratings}`;
+  if(req.query.score && req.query.score < 50) query += `&filter[rating][gt]=${req.query.score}`;
+  if(req.query.score && req.query.score > 50) query += `&filter[rating][lt]=${req.query.score}`;
+  if(req.query.yearRange) query += `&[release_date.date][in]=${req.query.yearRange}`;
 
-  superagent.get(url).set({'user-key': API_KEY}).set({'Accept': 'application/json'}).asJSON();
+  let url = `https://api-2445582011268.apicast.io/games/?fields=*${query}&limit=25&offset=0`;
+
+  console.log (url);
+
+  superagent.get(url).set({'user-key': API_KEY}).then(response => console.log(response.body));
 })
 
