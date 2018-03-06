@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Game App</title>
+  <link rel="stylesheet" href="styles/normalize.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/modules.css">
+  <script type="text/x-handlebars-template" id="error-template"></script>
+
+  <script id="game-list-template" type="text/x-handlebars-template">
+  <li class="game-items container" data-gameid={{game_id}}>
+    <div class="game-container">
+      <img src={{image_url}}>
+      <div class="game-overlay">
+        <h3>{{game-title}}</h3>
+        <p>{{game-company}}</p>
+        <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p>
+      </div>
+    </div>
+  </li></script>
+
+  <!-- Single Game View -->
+  <script id="game-detail-template" type="text/x-handlebars-template">
+  <div class="game-container detail-view">
+    <h3>{{game-title}}</h3>
+    <p>{{game-company}}</p>
+    <img src="{{image_url}}">
+    <p>{{description}}</p>
+    </div>
+  </div>
+</script>
+</head>
+
+<body>
+  <!-- Nav Menu -->
+  <header class="header">
+    <h1>Game App</h1>
+    <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
+    <br>
+    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
+  </header>
+  <section>
+    <form id="login-form">
+      <div class="box">
+        <label for="userName">User Name</label>
+        <input name="userName" type="text">
+        <button id="login">Login</button>
+      </div>
+    
+    </form>
+  </section>
+  <main>
+  <setion class="form container">
+    <h2>Choose Your Destiny</h2>
+  <form>
+    <div>
+    <ul>
+<li>What's your age range?</li>
+<input type="radio" name="q1">Kid
+<input type="radio" name="q1">Teen
+<input type="radio" name="q1">Adult(18+)
+<section>
+     <form id ="birthDate">
+       <label for="userBirthDate">Birthday:</label>
+       <input name="userBirthDate" id="date" type="date" required>
+
+       <button type="submit">Submit</button>
+     </form>
+   </section>
+<li>Why are you playing today?</li>
+<input type="radio" name="q2">Try something new
+<input type="radio" name="q2">Stretch my mind
+<input type="radio" name="q2">Compete(with friends)
+<input type="radio" name="q2">Blow stuff up!
+<input type="radio" name="q2">Adventure
+<li>What type of system are you gaming on?</li>
+<input type="radio" name="q3">Console
+<input type="radio" name="q3">Computer
+<input type="radio" name="q3">Handheld
+<input type="radio" name="q3">All
+<li>What generation games do you want to play?</li>
+<input type="radio" name="q4">First Gen
+<input type="radio" name="q4">Retro
+<input type="radio" name="q4">Revolution
+<input type="radio" name="q4">Modern
+<input type="radio" name="q4">Present/Upcoming
+<li>Would you play a really bad game just because?</li>
+<input type="radio" name="q5">Oh, absolutely!
+<input type="radio" name="q5">Yes
+<input type="radio" name="q5">No
+<input type="radio" name="q5">You disgust me!
+<li>question6</li>
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+<input type="radio" name="q6">
+  </ul>
+  <div><button type="submit">SEARCH</button></div>
+</div>
+</form>
+  </setion>
+
+  <section class="about-us container">
+    <h3 class="about-view">Meet the team.</h3>
+    <div class="top">
+      <div>
+        <h4>Jeremy Crawford</h4>
+        <img src="img/.png">
+        <p>about Jeremy</p>
+        <h4>Mario Flores</h4>
+        <img src="img/.png">
+        <p>about Mario</p>
+      </div>
+    </div>
+    <div class="bottom">
+      <div>
+      <h4>Zachary Schumpert</h4>
+        <img src="img/.png">
+        <p>about Zachary</p>
+      <h4>Josh West</h4>
+        <img src="img/.png">
+        <p>about Josh</p>
+    </div>
+    </div>
+  </section>
+
+  </main>
+  <footer>
+
+  </footer>
+  <script src=“https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js“></script>
+<script src="/scripts/controller/games.js"></script>
+<script src="/scripts/view/homeView.js"></script>
+<script src="/scripts/view/myResults.js"></script>
+<script src="/scripts/view/oneGame.js"></script>
+<script src="/scripts/view/resultsView.js"></script>
+<script src="/scripts/view/routes.js"></script>
+</body>
+</html>
