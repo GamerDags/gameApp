@@ -54,56 +54,56 @@
     </form>
   </section>
   <main>
-  <setion class="form container">
+  <section class="form container">
     <h2>Choose Your Destiny</h2>
   <form>
     <div>
     <ul>
-<li>What's your age range?</li>
-<input type="radio" name="q1">Kid
-<input type="radio" name="q1">Teen
-<input type="radio" name="q1">Adult(18+)
-<section>
-     <form id ="birthDate">
-       <label for="userBirthDate">Birthday:</label>
-       <input name="userBirthDate" id="date" type="date" required>
+        <li>What's your age range?</li>
+        <input type="radio" name="q1" id="q1-1" value="2,3">Kid
+        <input type="radio" name="q1" id="q1-2" value="3,4,5">Teen
+        <input type="radio" name="q1" id="q1-3" value="1,2,3,4,5,6,7">Adult(18+)
+        <!-- <section>
+          <form id ="birthDate">
+            <label for="userBirthDate">Birthday:</label>
+            <input name="userBirthDate" id="date" type="date" required>
 
-       <button type="submit">Submit</button>
-     </form>
-   </section>
-<li>Why are you playing today?</li>
-<input type="radio" name="q2">Try something new
-<input type="radio" name="q2">Stretch my mind
-<input type="radio" name="q2">Compete(with friends)
-<input type="radio" name="q2">Blow stuff up!
-<input type="radio" name="q2">Adventure
-<li>What type of system are you gaming on?</li>
-<input type="radio" name="q3">Console
-<input type="radio" name="q3">Computer
-<input type="radio" name="q3">Handheld
-<input type="radio" name="q3">All
-<li>What generation games do you want to play?</li>
-<input type="radio" name="q4">First Gen
-<input type="radio" name="q4">Retro
-<input type="radio" name="q4">Revolution
-<input type="radio" name="q4">Modern
-<input type="radio" name="q4">Present/Upcoming
-<li>Would you play a really bad game just because?</li>
-<input type="radio" name="q5">Oh, absolutely!
-<input type="radio" name="q5">Yes
-<input type="radio" name="q5">No
-<input type="radio" name="q5">You disgust me!
-<li>question6</li>
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-  </ul>
-  <div><button type="submit">SEARCH</button></div>
-</div>
-</form>
-  </setion>
+            <button type="submit">Submit</button>
+          </form>
+        </section> -->
+      <li>Why are you playing today?</li>
+        <input type="radio" name="q2-1" id="q2-1" value="25">Try something new
+        <input type="radio" name="q2" id="q2-2" value="1">Stretch my mind
+        <input type="radio" name="q2" id="q2-3" value="2">Compete(with friends)
+        <input type="radio" name="q2" id="q2-4" value="3">Blow stuff up!
+        <input type="radio" name="q2" id="q2-5" value="4">Have an adventure
+      <li>What type of system are you gaming on?</li>
+        <input type="radio" name="q3" id="q3-1" value="1">Console
+        <input type="radio" name="q3" id="q3-2" value="2">Computer
+        <input type="radio" name="q3" id="q3-3" value="3">Handheld
+        <input type="radio" name="q3" id="q3-4" value="4">All
+      <li>What generation games do you want to play?</li>
+        <input type="radio" name="q4" id="q4-1" value="0,473385540">First Gen
+        <input type="radio" name="q4" id="q4-2" value="410227200,820454340">Retro
+        <input type="radio" name="q4" id="q4-3" value="725846400,1230767940">Revolution
+        <input type="radio" name="q4" id="q4-4" value="1104537600,1514764740">Modern
+        <input type="radio" name="q4" id="q4-5" value="1514764800,1609459140">Present/Upcoming
+      <li>Would you play a really bad game just because?</li>
+        <input type="radio" name="q5" id="q5-1" value="25">Oh, absolutely!
+        <input type="radio" name="q5" id="q5-2" value="75">Yes
+        <input type="radio" name="q5" id="q5-3" value="76">No
+        <input type="radio" name="q5" id="q5-4" value="90">You disgust me!
+      <!-- <li>question6</li>
+        <input type="radio" name="q6">
+        <input type="radio" name="q6">
+        <input type="radio" name="q6">
+        <input type="radio" name="q6">
+        <input type="radio" name="q6"> -->
+      </ul>
+    <div><button type="submit">SEARCH</button></div>
+    </div>
+    </form>
+  </section>
 
   <section class="about-us container">
     <h3 class="about-view">Meet the team.</h3>
@@ -133,12 +133,14 @@
   <footer>
 
   </footer>
-  <script src=“https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js“></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="/scripts/controller/games.js"></script>
 <script src="/scripts/view/homeView.js"></script>
 <script src="/scripts/view/myResults.js"></script>
 <script src="/scripts/view/oneGame.js"></script>
 <script src="/scripts/view/resultsView.js"></script>
 <script src="/scripts/view/routes.js"></script>
+<script>app.homeView.initSearchForm()</script>
 </body>
 </html>
