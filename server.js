@@ -13,9 +13,12 @@ const igdb = require('igdb-api-node').default;
 const app = express();
 const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 const TOKEN = process.env.TOKEN;
-
 const API_KEY = 'd5f8b5029dfc0e40ac54647a962a9e42';
+
+const client = new pg.Client(DATABASE_URL);
+client.connect();
 
 //Application Middleware
 app.use(cors());
@@ -119,3 +122,75 @@ app.get('/', (req, res) => {
 
 app.get('*', (req, res) => res.redirect(CLIENT_URL));
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
+// function loadGames() {
+//   console.log('hit loadGames');
+//   client.query('SELECT COUNT (*) FROM games;')
+//     .then(result => {
+//       if(!parseInt(result.rows[0].count)) {
+//         fs.readFile('../book-list-client/data/books.json', 'utf8', (err, fd) => {
+//           JSON.parse(fd).forEach(ele => {
+//             client.query(`
+//             INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary)
+//             VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+//             [ele.game_id, ele.title, ele.genres, ele.platforms, ele.esrb, ele.first_release_date, ele.image_url, ele.summary]
+//             )
+//               .catch(console.error);
+//           });
+//         });
+//       }
+//     });
+// }
+function loadGamesDB() {
+  console.log('hit loadDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    games(
+      table_id SERIAL,
+      game_id INTEGER NOT NULL PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      genres INTEGER, 
+      platforms INTEGER, 
+      esrb INTEGER, 
+      first_release_date INTEGER, 
+      image_url VARCHAR(255), 
+      summary TEXT
+    );`
+  )
+
+    .then(console.log)
+    .catch(console.error);
+}
+
+
+function loadUserDB() {
+  console.log('hit loadUserDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    users(
+      user_id SERIAL PRIMARY KEY,
+      username VARCHAR(255) NOT NULL,
+      password VARCHAR(255)
+    );`
+  )
+
+    .then(console.log)
+    .catch(console.error);
+}
+
+function userGamesDB() {
+  console.log('hit userGamesDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    userGames(
+      game_id INTEGER NOT NULL REFERENCES games(game_id),
+      user_id INTEGER NOT NULL REFERENCES users(user_id)
+    );`
+  )
+
+    .then(console.log)
+    .catch(console.error);
+}
+loadGamesDB();
+loadUserDB();
+userGamesDB();
