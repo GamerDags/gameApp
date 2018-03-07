@@ -1,6 +1,5 @@
 'use strict';
 
-
 // Application dependencies
 const express = require('express');
 const cors = require('cors');
@@ -135,7 +134,7 @@ app.post('/login', bodyParser, (req,res) => {
     .catch(console.error);
 });
 
-app.post('/', bodyParser, (req,res) => {
+app.post('/games', bodyParser, (req,res) => {
   console.log('hit insertNewGame');
   let {game_id, title, genres, platforms, esrb, first_release_date, image_url, summary} = req.body;
   client.query(`INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
@@ -144,7 +143,7 @@ app.post('/', bodyParser, (req,res) => {
     .catch(console.error);
 });
 
-app.post('/', bodyParser, (req, res) => {
+app.post('/login', bodyParser, (req, res) => {
   console.log('hit postNewGame');
   let {user_id, game_id} = req.body;
   client.query('INSERT INTO userGames(user_id, game_id) VALUES ($1, $2);', 
@@ -188,7 +187,6 @@ function loadGamesDB() {
       summary TEXT
     );`
   )
-
     .then(console.log)
     .catch(console.error);
 }
@@ -201,10 +199,9 @@ function loadUserDB() {
     users(
       user_id SERIAL PRIMARY KEY,
       username VARCHAR(255) NOT NULL,
-      password VARCHAR(255),
+      password VARCHAR(255)
     );`
   )
-
     .then(console.log)
     .catch(console.error);
 }
@@ -219,7 +216,6 @@ function userGamesDB() {
       played VARCHAR (20)
     );`
   )
-
     .then(console.log)
     .catch(console.error);
 }
