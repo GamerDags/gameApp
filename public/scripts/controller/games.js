@@ -16,7 +16,7 @@ var __API_URL__ = 'http://localhost:3000';
   Game.prototype.toHtml = function() {
     let template = Handlebars.compile($('#game-list-template').text());
     return template(this);
-  }
+  };
 
   Game.all = [];
 
@@ -28,8 +28,8 @@ var __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback);
 
   Game.create = game =>
-    $.post(`${__API_URL__}/api/v1/games`, game)
-      .then(() => page('/'))
+    $.post(`${__API_URL__}/games`, game)
+      .then(() => page('/games'))
       .catch(errorCallback);
 
   Game.update = (game, gameId) =>
@@ -50,7 +50,7 @@ var __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback)
 
   Game.searchResults = (gameSearch, callback) =>
-    $.get(`${__API_URL__}/api/v1/games`, gameSearch)
+    $.get(`${__API_URL__}/`, gameSearch)
       // .then(result => console.log(result))
       .then(Game.loadAll)
       .then(callback)

@@ -5,7 +5,7 @@ var app = app || {};
 
   $('.nav-menu').on('click', function(event) {
     $('.nav-menu').slideToggle(350);
-  })
+  });
 
   function reset() {
     $('.container').hide();
@@ -18,7 +18,7 @@ var app = app || {};
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
-    
+
     $('.form').on('submit', function(event){
       event.preventDefault();
 
@@ -30,10 +30,10 @@ var app = app || {};
 
       let ratingsValue = $('input:radio[id="q2-1"]:checked').val() || '';
       console.log(ratingsValue + ' is ratings value');
-      
-      // if(q2-1 === true) { 
+
+      // if(q2-1 === true) {
       //   $('#q2-2'), $('#q2-3'), $('#q2-4'), $('#q2-5') === null
-      // } else { 
+      // } else {
       let genreValue = $('input:radio[name="q2"]:checked').val() || '';
       console.log(genreValue + ' is genre value');
       // };
@@ -61,8 +61,8 @@ var app = app || {};
       module.Game.searchResults(gameSearch, gameView.initResultsPage);
 
       $('input').checked===false;
-    })   
-  }
+    });
+  };
 
   gameView.initResultsPage = function() {
     reset();
@@ -72,7 +72,7 @@ var app = app || {};
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
     $('.detail-button a').text('Add to list').attr('href', '/myList');
     //$('.detail-button').on('click', function(e) {needs filled in}
-  }
+  };
 
   module.gameView = gameView;
 
