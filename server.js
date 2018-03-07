@@ -45,7 +45,6 @@ app.get('/', (req, res) => {
   //get request from API
   superagent.get(url)
     .set({'user-key': API_KEY})
-    //.then(res => console.log(res.body))//need to build from here
     .then(response => response.body.map((games) => {
 
       let { name, genres, platforms, esrb, first_release_date, cover, summary, id } = games;
@@ -120,29 +119,61 @@ app.get('/', (req, res) => {
 //   .set({'user-key': API_KEY})
 // }
 
-app.get('*', (req, res) => res.redirect(CLIENT_URL));
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+app.get('/mygames', (req, res) => {
+  console.log('hit loadMyGames');
+  client.query('SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id JOIN users on userGames.user_id = users.user_id;')
+    .then(results => res.send(results.rows))
+  // .then(console.log);
+    .catch(console.error);
+});
 
-// function loadGames() {
-//   console.log('hit loadGames');
-//   client.query('SELECT COUNT (*) FROM games;')
-//     .then(result => {
-//       if(!parseInt(result.rows[0].count)) {
-//         fs.readFile('../book-list-client/data/books.json', 'utf8', (err, fd) => {
-//           JSON.parse(fd).forEach(ele => {
-//             client.query(`
-//             INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary)
-//             VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
-//             [ele.game_id, ele.title, ele.genres, ele.platforms, ele.esrb, ele.first_release_date, ele.image_url, ele.summary]
-//             )
-//               .catch(console.error);
-//           });
-//         });
-//       }
-//     });
-// }
+app.post('/login', bodyParser, (req,res) => {
+  let {username, password} = req.body;
+  client.query(`INSERT INTO users(username, password) VALUES ($1, $2);`, [username, password]
+  )
+    .then(results => res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.post('/', bodyParser, (req,res) => {
+  console.log('hit insertNewGame');
+  let {game_id, title, genres, platforms, esrb, first_release_date, image_url, summary} = req.body;
+  client.query(`INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+    [game_id, title, genres, platforms, esrb, first_release_date, image_url, summary])
+    .then(results => res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.post('/', bodyParser, (req, res) => {
+  console.log('hit postNewGame');
+  let {user_id, game_id} = req.body;
+  client.query('INSERT INTO userGames(user_id, game_id) VALUES ($1, $2);', 
+    [user_id, game_id])
+    .then(()=> res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.put('/mygames', bodyParser, (req, res) => {
+  console.log('hit gamePlayed');
+  let {played} = req.body;
+  client.query(`UPDATE userGames SET played=$1`,
+    [played])
+    .then(() => res.sendStatus(204))
+    .catch(console.error);
+
+});
+
+app.delete('/mygames', bodyParser, (req, res) => {
+  console.log('hit deleteMyGame');
+  let {user_id, game_id} = req.body;
+  client.query('DELETE FROM userGames WHERE user_id=$1 AND game_id=$2;', 
+    [user_id, game_id])
+    .then(()=> res.sendStatus(204))
+    .catch(console.error);
+});
+
 function loadGamesDB() {
-  console.log('hit loadDB');
+  console.log('hit loadGamesDB');
   client.query(`
     CREATE TABLE IF NOT EXISTS
     games(
@@ -170,7 +201,7 @@ function loadUserDB() {
     users(
       user_id SERIAL PRIMARY KEY,
       username VARCHAR(255) NOT NULL,
-      password VARCHAR(255)
+      password VARCHAR(255),
     );`
   )
 
@@ -184,7 +215,8 @@ function userGamesDB() {
     CREATE TABLE IF NOT EXISTS
     userGames(
       game_id INTEGER NOT NULL REFERENCES games(game_id),
-      user_id INTEGER NOT NULL REFERENCES users(user_id)
+      user_id INTEGER NOT NULL REFERENCES users(user_id),
+      played VARCHAR (20)
     );`
   )
 
@@ -194,3 +226,6 @@ function userGamesDB() {
 loadGamesDB();
 loadUserDB();
 userGamesDB();
+
+app.get('*', (req, res) => res.redirect(CLIENT_URL));
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
