@@ -21,9 +21,36 @@ var __API_URL__ = 'http://localhost:3000';
   Game.all = [];
 
   Game.loadAll = rows => Game.all = rows.map(game => new Game(game));
+  Game.fetchAll = callback =>
+    $.get(`${__API_URL__}/api/v1/games`)
+      .then(Game.loadAll)
+      .then(callback)
+      .catch(errorCallback);
+
+  Game.create = game =>
+    $.post(`${__API_URL__}/api/v1/games`, game)
+      .then(() => page('/'))
+      .catch(errorCallback);
+
+  Game.update = (game, gameId) =>
+    $.ajax({
+      url: `${__API_URL__}/api/v1/games/${gameId}`,
+      method: 'PUT',
+      data: game,
+    })
+      .then(() => page(`/games/${gameId}`))
+      .catch(errorCallback)
+
+  Game.destroy = id =>
+    $.ajax({
+      url: `${__API_URL__}/api/v1/games/${id}`,
+      method: 'DELETE',
+    })
+      .then(() => page('/'))
+      .catch(errorCallback)
 
   Game.searchResults = (gameSearch, callback) =>
-    $.get(`${__API_URL__}/`, gameSearch)
+    $.get(`${__API_URL__}/api/v1/games`, gameSearch)
       // .then(result => console.log(result))
       .then(Game.loadAll)
       .then(callback)

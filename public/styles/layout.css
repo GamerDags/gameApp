@@ -3,6 +3,15 @@ main {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* margin: auto; */
 }
+#cover {
+  float: left;
+}
+
+.game-items {
+  border: solid 10px yellow;
+  display: inline;
+  max-width: 331px;
+}
 
 header {
   /* color: rgb(241, 192, 57); 
@@ -167,13 +176,27 @@ h3 {
   h2 {
     color: blue;
   }
-  
+
+
   .form{
     width: 99%;
   }
 
 }
 
+/* /* .collapse > a{
+  cursor: pointer;
+  display: block;
+}
+.collapse:focus{
+  outline: none;
+}
+.collapse > div{
+  display: none;
+}
+.collapse:focus div{
+  display: block; 
+  this collapses and expands the summary.
 
 /* 
 @media all and (min-width: 1200px) {

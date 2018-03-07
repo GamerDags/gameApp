@@ -1,5 +1,4 @@
 'use strict';
-
 var app = app || {};
 
 (function(module) {
@@ -28,11 +27,17 @@ var app = app || {};
       let ageValue = $('input:radio[name="q1"]:checked').val();
       console.log(ageValue + ' is age value');
       // q2.1
-      let ratingsValue = $('input:radio[name="q2-1"]:checked').val() || '';
+
+      let ratingsValue = $('input:radio[id="q2-1"]:checked').val() || '';
       console.log(ratingsValue + ' is ratings value');
-      //q2.2
+      
+      // if(q2-1 === true) { 
+      //   $('#q2-2'), $('#q2-3'), $('#q2-4'), $('#q2-5') === null
+      // } else { 
       let genreValue = $('input:radio[name="q2"]:checked').val() || '';
       console.log(genreValue + ' is genre value');
+      // };
+      //q2.2
       // q3
       let platformsValue = $('input:radio[name="q3"]:checked').val();
       console.log(platformsValue + ' is console value');
@@ -42,6 +47,7 @@ var app = app || {};
       // q5
       let scoreValue = $('input:radio[name="q5"]:checked').val();
       console.log(scoreValue + ' is score value');
+
 
       let gameSearch = {
         age: ageValue || '',
