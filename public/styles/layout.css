@@ -1,5 +1,5 @@
 main {
-  min-height: 450px;
+  /* height: 99%; */
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   /* margin: auto; */
 }
@@ -104,7 +104,8 @@ h3 {
 
 #form-button {
   background-color: cornflowerblue;
-  margin-top: 15px;
+  margin: 15px 0;
+  padding: 10px 15px;
   /* float: right; */
   text-align: center;
 }
