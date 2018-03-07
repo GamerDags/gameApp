@@ -1,18 +1,30 @@
 body {
- 
   color: red;
-  background-image: url("../img/mash2.png");
-  background-repeat:repeat;
+  background-image: url("../img/mash3.jpg");
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  /* background-position: right top; */
+  /* background-position: left top; */
+  background-position: center bottom;
 }
 
-header {
-  border: solid 1px black;
+@media all and (min-width: 480px) {
+  body {
+  color: green;
+  background-image: url("../img/mash3.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top;
+  background-color: black;
+  }
 }
 
-main {
-  
-}
-
-footer {
-  border: solid 1px black;
+@media all and (min-width: 960px) {
+  body {
+    color: red;
+    background-image: url("../img/mash6.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
 }
