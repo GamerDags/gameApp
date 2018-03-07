@@ -22,8 +22,9 @@ var __API_URL__ = 'http://localhost:3000';
 
   Game.loadAll = rows => Game.all = rows.map(game => new Game(game));
 
-  Game.searchResults = (game, callback) =>
-    $.get(`${__API_URL__}/`, game)
+  Game.searchResults = (gameSearch, callback) =>
+    $.get(`${__API_URL__}/`, gameSearch)
+      // .then(result => console.log(result))
       .then(Game.loadAll)
       .then(callback)
       .catch(errorCallback);

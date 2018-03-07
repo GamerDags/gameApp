@@ -34,8 +34,8 @@ var app = app || {};
       let genreValue = $('input:radio[name="q2"]:checked').val() || '';
       console.log(genreValue + ' is genre value');
       // q3
-      let consolesValue = $('input:radio[name="q3"]:checked').val();
-      console.log(consolesValue + ' is console value');
+      let platformsValue = $('input:radio[name="q3"]:checked').val();
+      console.log(platformsValue + ' is console value');
       // q4
       let yearRangeValue = $('input:radio[name="q4"]:checked').val();
       console.log(yearRangeValue + ' is year range');
@@ -45,8 +45,8 @@ var app = app || {};
 
       let gameSearch = {
         age: ageValue || '',
-        genre: genreValue || '',
-        consoles: consolesValue || '',
+        genres: genreValue || '',
+        platforms: platformsValue || '',
         ratings: ratingsValue || '',
         score: scoreValue || '',
         yearRange: yearRangeValue || ''
