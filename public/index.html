@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Game App</title>
+  <title>gameUp</title>
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/modules.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
   <script type="text/x-handlebars-template" id="error-template"></script>
 
   <script id="game-list-template" type="text/x-handlebars-template">
@@ -38,13 +40,17 @@
 <body>
   <!-- Nav Menu -->
   <header class="header">
-    <h1>Game App</h1>
+    <div id="header-bar">
+      <i class="fas fa-bars fa-2x"></i>
+      <h1 href="/" id="gameTitle">gameUp</h1>
+    </div>
+    <nav class= "nav container">
     <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
     <br>
-    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
+    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a></nav>
   </header>
   <section>
-    <form id="login-form">
+    <form class="login-form container">
       <div class="box">
         <label for="userName">User Name</label>
         <input name="userName" type="text">
@@ -54,56 +60,62 @@
     </form>
   </section>
   <main>
-  <setion class="form container">
-    <h2>Choose Your Destiny</h2>
+  <section class="form container">
+    <h2 id="destiny">Choose Your Destiny</h2>
   <form>
     <div>
-    <ul>
-<li>What's your age range?</li>
-<input type="radio" name="q1">Kid
-<input type="radio" name="q1">Teen
-<input type="radio" name="q1">Adult(18+)
-<section>
-     <form id ="birthDate">
-       <label for="userBirthDate">Birthday:</label>
-       <input name="userBirthDate" id="date" type="date" required>
+      <h3 class= "question">What's your age range?</h3>
+        <label for="q" class="choice"><input type="radio" name="q1" id="q1-1" value="2,3"> Kid</label>
+        <label for="q" class="choice"><input type="radio" name="q1" id="q1-2" value="3,4,5"> Teen</label>
+        <label for="q" class="choice"><input type="radio" name="q1" id="q1-3" value="1,2,3,4,5,6,7"> Adult(18+)</label>
+        <!-- <section>
+          <form id ="birthDate">
+            <label for="userBirthDate">Birthday:</label>
+            <input name="userBirthDate" id="date" type="date" required>
 
-       <button type="submit">Submit</button>
-     </form>
-   </section>
-<li>Why are you playing today?</li>
-<input type="radio" name="q2">Try something new
-<input type="radio" name="q2">Stretch my mind
-<input type="radio" name="q2">Compete(with friends)
-<input type="radio" name="q2">Blow stuff up!
-<input type="radio" name="q2">Adventure
-<li>What type of system are you gaming on?</li>
-<input type="radio" name="q3">Console
-<input type="radio" name="q3">Computer
-<input type="radio" name="q3">Handheld
-<input type="radio" name="q3">All
-<li>What generation games do you want to play?</li>
-<input type="radio" name="q4">First Gen
-<input type="radio" name="q4">Retro
-<input type="radio" name="q4">Revolution
-<input type="radio" name="q4">Modern
-<input type="radio" name="q4">Present/Upcoming
-<li>Would you play a really bad game just because?</li>
-<input type="radio" name="q5">Oh, absolutely!
-<input type="radio" name="q5">Yes
-<input type="radio" name="q5">No
-<input type="radio" name="q5">You disgust me!
-<li>question6</li>
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-<input type="radio" name="q6">
-  </ul>
-  <div><button type="submit">SEARCH</button></div>
-</div>
-</form>
-  </setion>
+            <button type="submit">Submit</button>
+          </form>
+        </section> -->
+      <h3 class= "question">Why are you playing today?</h3>
+        <label for="q" class="choice"><input type="radio" name="q2-1" id="q2-1" value="25"> Try something new</label><br>
+        <label for="q" class="choice"><input type="radio" name="q2" id="q2-2" value="1"> Stretch my mind</label><br>
+        <label for="q" class="choice"><input type="radio" name="q2" id="q2-3" value="2"> Compete(with friends)</label><br>
+        <label for="q" class="choice"><input type="radio" name="q2" id="q2-4" value="3"> Blow stuff up!</label><br>
+        <label for="q" class="choice"><input type="radio" name="q2" id="q2-5" value="4"> Have an adventure</label>
+      
+      <h3 class= "question">What type of system are you gaming on?</h3>
+        <label for="q" class="choice"><input type="radio" name="q3" id="q3-1" value="1"> Console  </label>
+        <label for="q" class="choice"><input type="radio" name="q3" id="q3-2" value="2"> Computer  </label>
+        <label for="q" class="choice"><input type="radio" name="q3" id="q3-3" value="3"> Handheld  </label>
+        <label for="q" class="choice"><input type="radio" name="q3" id="q3-4" value="4"> All  </label>
+      
+      <h3 class= "question">What generation games do you want to play?</h3>
+        <label for="q" class="choice"><input type="radio" name="q4" id="q4-1" value="0,473385540">Gen One</label><br>
+        <label for="q" class="choice"><input type="radio" name="q4" id="q4-2" value="410227200,820454340"> Retro</label><br>
+        <label for="q" class="choice"><input type="radio" name="q4" id="q4-3" value="725846400,1230767940"> Revolution</label><br>
+        <label for="q" class="choice"><input type="radio" name="q4" id="q4-4" value="1104537600,1514764740"> Modern</label><br>
+        <label for="q" class="choice"><input type="radio" name="q4" id="q4-5" value="1514764800,1609459140"> New/Now</label>
+      
+      <h3 class= "question">Would you play a really bad game just because?</h3>
+        <label for="q" class="choice"><input type="radio" name="q5" id="q5-1" value="25"> Oh, absolutely!</label>
+        <label for="q" class="choice"><input type="radio" name="q5" id="q5-2" value="75"> Yes</label>
+        <label for="q" class="choice"><input type="radio" name="q5" id="q5-3" value="76"> No</label>
+        <label for="q" class="choice"><input type="radio" name="q5" id="q5-4" value="90"> Disgusting...</label>
+      <!-- <li>question6</li>
+        <input class="radio" type="radio" name="q6">
+        <input class="radio" type="radio" name="q6">
+        <input class="radio" type="radio" name="q6">
+        <input class="radio" type="radio" name="q6">
+        <input class="radio" type="radio" name="q6"> -->
+    <div><button id="form-button" type="submit">SEARCH</button></div>
+    </div>
+    </form>
+  </section>
+  <section class="search-results container">
+      <section>
+        <ul id="search-list"></ul>
+      </section>
+    </section>
 
   <section class="about-us container">
     <h3 class="about-view">Meet the team.</h3>
@@ -129,16 +141,23 @@
     </div>
   </section>
 
+  <section class="error-view container">
+      <h2 class="view-title">Poop... that didn't work</h2>
+      <section id="error-message"></section>
+  </section>
+
   </main>
   <footer>
 
   </footer>
-  <script src=“https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js“></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="/scripts/controller/games.js"></script>
-<script src="/scripts/view/homeView.js"></script>
-<script src="/scripts/view/myResults.js"></script>
-<script src="/scripts/view/oneGame.js"></script>
-<script src="/scripts/view/resultsView.js"></script>
+<script src="/scripts/view/gameView.js"></script>
+<script src="/scripts/view/myListView.js"></script>
+<script src="/scripts/view/errorView.js"></script>
 <script src="/scripts/view/routes.js"></script>
+<!-- <script>app.gameView.initSearchForm()</script> -->
 </body>
 </html>
