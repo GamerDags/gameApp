@@ -3,9 +3,9 @@ body {
   background-image: url("../img/mash3.jpg");
   background-repeat:no-repeat;
   background-attachment: fixed;
-  background-position: right top;
+  /* background-position: right top; */
   /* background-position: left top; */
-  /* background-position: center bottom; */
+  background-position: center bottom;
 }
 
 @media all and (min-width: 480px) {
