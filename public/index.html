@@ -47,24 +47,26 @@
 <body>
   <!-- Nav Menu -->
   <header class="header">
-    <div id="header-bar">
-      <i class="fas fa-bars fa-2x"></i>
-      <h1 href="/" id="gameTitle">gameUp</h1>
-    </div>
-    <nav class= "nav container">
-    <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
-    <br>
-    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a></nav>
+    <h1 href="/" id="gameTitle">gameUp</h1>
+    <nav class= "icon-menu">
+        <i class="fas fa-bars fa-2x"></i>
+    </nav>
+      
+      <a href="/"><div class="nav-menu" id="home-button">Home</div></a><br>
+      <a href="/"><div class="nav-menu" id="login-button">My Games/Login</div></a><br>
+      <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
+
   </header>
-  <section>
+  <section class"login-container">
     <form class="login-form container">
       <div class="box">
-        <label for="userName">User Name</label>
-        <input name="userName" type="text">
+        <!-- <label for="userName"></label> -->
+        <input name="userName" type="text" placeholder="Enter User Name">
         <button id="login">Login</button>
       </div>
     </form>
   </section>
+
   <main>
   <section class="form container">
     <h2 id="destiny">Choose Your Destiny</h2>
@@ -119,7 +121,7 @@
   </section>
 
   <section class="search-results container">
-    <h2 class="view-title">Results</h2>
+    <h2 class="view-title">RESULTS</h2>
     
       <section class="game-list">
         <div id="search-list"></div>
