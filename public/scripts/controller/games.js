@@ -144,7 +144,7 @@ const platformIdNameList = {
   141: '',
   142: '',
   143: '',
-}
+};
 
 const genreIdList = {
   1: 'Point-and-Click',
@@ -178,7 +178,7 @@ const genreIdList = {
   29: 'Pinball',
   30: 'Adventure',
   31: 'Indie',
-}
+};
 
 
 

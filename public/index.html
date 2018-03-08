@@ -17,15 +17,15 @@
   <section class="game-items container" data-gameid={{game_id}}>
     <div class="game-container">
       <img id="image_url" src='{{coverUrl}}'>
-      <!-- <div class="game-overlay"> -->
+       <!-- <div class="game-overlay"></div>
         <h3>{{title}}</h3>
-        <p>{{platforms}}</p>
-        <!-- <div class="collapse" tabindex="1"> -->
+        <p>{{platforms}}</p> -->
+        <div class="collapse" tabindex="1">
           <a>Click for Summary</a>
-          <!-- <div>{{summary}}</div>
-        </div> -->
+          <div>{{summary}}</div>
+        </div>
         <!-- <button onclick="myFunction()">Click Me</button> -->
-        <!-- <input type="button" value="DETAILS" onclick={{summary}}/> -->
+        <input type="button" value="Less" onclick={{summary}}/>
         <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p>
         <button class="add-game" value={{game_id}}>Add To List</button>
       </div>

@@ -180,7 +180,7 @@ h3 {
 
 }
 
-/* /* .collapse > a{
+.collapse > a{
   cursor: pointer;
   display: block;
 }
@@ -192,7 +192,9 @@ h3 {
 }
 .collapse:focus div{
   display: block; 
-  this collapses and expands the summary.
+}
+  /* this collapses and expands the summary. */
+
 
 /* 
 @media all and (min-width: 1200px) {
