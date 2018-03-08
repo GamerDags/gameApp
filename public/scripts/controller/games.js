@@ -146,7 +146,39 @@ const platformIdNameList = {
   143: '',
 }
 
-
+const genreIdList = {
+  1: 'Point-and-Click',
+  2: '',
+  3: 'Fighting',
+  4: 'Shooter',
+  5: '',
+  6: 'Music',
+  7: 'Platform',
+  8: 'Puzzle',
+  9: 'Racing',
+  10: 'Real Time Strategy (RTS)',
+  11: 'Role Playing Game (RPG)',
+  12: 'Simulator',
+  13: 'Sport',
+  14: 'Strategy',
+  15: '',
+  16: '',
+  17: '',
+  18: '',
+  19: '',
+  20: '',
+  21: '',
+  22: '',
+  23: 'Tactical',
+  24: 'Hack and Slash/Beat \'em up',
+  25: 'Quiz/Trivia',
+  26: '',
+  27: '',
+  28: '',
+  29: 'Pinball',
+  30: 'Adventure',
+  31: 'Indie',
+}
 
 
 
