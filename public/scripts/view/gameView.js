@@ -22,7 +22,15 @@ var app = app || {};
     reset();
     $('.form').show();
 
-    $('.form').on('submit', function(event){
+    $('.form').on('click', function(event){
+      event.preventDefault();
+
+        //about me
+  gameView.initAboutUs = function() {
+    reset();
+    $('.about-us').show();
+
+    $('.about-us').on('click', function(event){
       event.preventDefault();
 
       //if statements checking for value
