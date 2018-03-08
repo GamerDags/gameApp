@@ -1,21 +1,23 @@
 'use strict';
 
-
 // Application dependencies
 const express = require('express');
 const cors = require('cors');
 const pg = require('pg');
 const bodyParser = require('body-parser').urlencoded({extended: true});
 const superagent = require('superagent');
-const igdb = require('igdb-api-node').default;
+// const igdb = require('igdb-api-node').default;
 
 // Application Setup
 const app = express();
 const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 const TOKEN = process.env.TOKEN;
-
 const API_KEY = 'd5f8b5029dfc0e40ac54647a962a9e42';
+
+const client = new pg.Client(DATABASE_URL);
+client.connect();
 
 //Application Middleware
 app.use(cors());
@@ -42,7 +44,6 @@ app.get('/', (req, res) => {
   //get request from API
   superagent.get(url)
     .set({'user-key': API_KEY})
-    //.then(res => console.log(res.body))//need to build from here
     .then(response => response.body.map((games) => {
 
       let { name, genres, platforms, esrb, first_release_date, cover, summary, id } = games;
@@ -116,6 +117,112 @@ app.get('/', (req, res) => {
 //   superagent.get(url)
 //   .set({'user-key': API_KEY})
 // }
+
+app.get('/mygames', (req, res) => {
+  console.log('hit loadMyGames');
+  client.query('SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id JOIN users on userGames.user_id = users.user_id;')
+    .then(results => res.send(results.rows))
+  // .then(console.log);
+    .catch(console.error);
+});
+//TODO fetch user info based on password username
+
+app.post('/login', bodyParser, (req,res) => {
+  let {username, password} = req.body;
+  client.query(`INSERT INTO users(username, password) VALUES ($1, $2);`, [username, password]
+  )
+    .then(results => res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.post('/games', bodyParser, (req,res) => {
+  console.log('hit insertNewGame');
+  let {game_id, title, genres, platforms, esrb, first_release_date, image_url, summary} = req.body;
+  client.query(`INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+    [game_id, title, genres, platforms, esrb, first_release_date, image_url, summary])
+    .then(results => res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.post('/userGames', bodyParser, (req, res) => {
+  console.log('hit postNewGame');
+  let {user_id, game_id} = req.body;
+  client.query('INSERT INTO userGames(user_id, game_id) VALUES ($1, $2);', 
+    [user_id, game_id])
+    .then(()=> res.sendStatus(201))
+    .catch(console.error);
+});
+
+app.put('/mygames', bodyParser, (req, res) => {
+  console.log('hit gamePlayed');
+  let {played} = req.body;
+  client.query(`UPDATE userGames SET played=$1`,
+    [played])
+    .then(() => res.sendStatus(204))
+    .catch(console.error);
+
+});
+
+app.delete('/mygames', bodyParser, (req, res) => {
+  console.log('hit deleteMyGame');
+  let {user_id, game_id} = req.body;
+  client.query('DELETE FROM userGames WHERE user_id=$1 AND game_id=$2;', 
+    [user_id, game_id])
+    .then(()=> res.sendStatus(204))
+    .catch(console.error);
+});
+
+function loadGamesDB() {
+  console.log('hit loadGamesDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    games(
+      table_id SERIAL,
+      game_id INTEGER NOT NULL PRIMARY KEY,
+      title VARCHAR(255) NOT NULL,
+      genres VARCHAR(20), 
+      platforms VARCHAR(20), 
+      esrb VARCHAR(20), 
+      first_release_date VARCHAR(20), 
+      image_url VARCHAR(255), 
+      summary TEXT
+    );`
+  )
+    .then(console.log)
+    .catch(console.error);
+}
+
+
+function loadUserDB() {
+  console.log('hit loadUserDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    users(
+      user_id SERIAL PRIMARY KEY,
+      username VARCHAR(255) NOT NULL,
+      password VARCHAR(255)
+    );`
+  )
+    .then(console.log)
+    .catch(console.error);
+}
+
+function userGamesDB() {
+  console.log('hit userGamesDB');
+  client.query(`
+    CREATE TABLE IF NOT EXISTS
+    userGames(
+      game_id INTEGER NOT NULL REFERENCES games(game_id),
+      user_id INTEGER NOT NULL REFERENCES users(user_id),
+      played VARCHAR (20)
+    );`
+  )
+    .then(console.log)
+    .catch(console.error);
+}
+loadGamesDB();
+loadUserDB();
+userGamesDB();
 
 app.get('*', (req, res) => res.redirect(CLIENT_URL));
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

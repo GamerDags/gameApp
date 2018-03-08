@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>gameApp</title>
+  <title>gameUp</title>
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
@@ -14,16 +14,23 @@
   <script type="text/x-handlebars-template" id="error-template"></script>
 
   <script id="game-list-template" type="text/x-handlebars-template">
-  <li class="game-items container" data-gameid={{game_id}}>
+  <section class="game-items container" data-gameid={{game_id}}>
     <div class="game-container">
-      <img src={{image_url}}>
-      <div class="game-overlay">
-        <h3>{{game-title}}</h3>
-        <p>{{game-company}}</p>
+      <img id="cover" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+      <!-- <div class="game-overlay"> -->
+        <h3>{{title}}</h3>
+        <p>{{platforms}}</p>
+        <!-- <div class="collapse" tabindex="1"> -->
+          <a>Click for Summary</a>
+          <!-- <div>{{summary}}</div>
+        </div> -->
+        <!-- <button onclick="myFunction()">Click Me</button> -->
+        <!-- <input type="button" value="DETAILS" onclick={{summary}}/> -->
         <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p>
+        <button class="add-game" value={{game_id}}>Add To List</button>
       </div>
     </div>
-  </li></script>
+  </div></script>
 
   <!-- Single Game View -->
   <script id="game-detail-template" type="text/x-handlebars-template">
@@ -42,7 +49,7 @@
   <header class="header">
     <div id="header-bar">
       <i class="fas fa-bars fa-2x"></i>
-      <h1 href="/" id="gameTitle">gameApp</h1>
+      <h1 href="/" id="gameTitle">gameUp</h1>
     </div>
     <nav class= "nav container">
     <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
@@ -56,7 +63,6 @@
         <input name="userName" type="text">
         <button id="login">Login</button>
       </div>
-    
     </form>
   </section>
   <main>
@@ -77,7 +83,7 @@
           </form>
         </section> -->
       <h3 class= "question">Why are you playing today?</h3>
-        <label for="q" class="choice"><input type="radio" name="q2-1" id="q2-1" value="25"> Try something new</label><br>
+        <label for="q" class="choice"><input type="radio" name="q2" id="q2-1" value="25"> Try something new</label><br>
         <label for="q" class="choice"><input type="radio" name="q2" id="q2-2" value="1"> Stretch my mind</label><br>
         <label for="q" class="choice"><input type="radio" name="q2" id="q2-3" value="2"> Compete(with friends)</label><br>
         <label for="q" class="choice"><input type="radio" name="q2" id="q2-4" value="3"> Blow stuff up!</label><br>
@@ -111,11 +117,18 @@
     </div>
     </form>
   </section>
+
   <section class="search-results container">
-      <section>
-        <ul id="search-list"></ul>
+    <h2 class="view-title">Results</h2>
+    
+      <section class="game-list">
+        <div id="search-list"></div>
       </section>
     </section>
+
+  <section class="detail-view container">
+    <section class="game-detail"></section>
+  </section>
 
   <section class="about-us container">
     <h3 class="about-view">Meet the team.</h3>
