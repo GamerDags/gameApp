@@ -3,14 +3,21 @@ var app = app || {};
 
 (function(module) {
 
-  $('.nav-menu').on('click', function(event) {
-    $('.nav-menu').slideToggle(350);
+  $('.icon-menu').on('click', function(event) {
+    $('#home-button').slideToggle(200);
+    $('#login-button').slideToggle(850);
+    $('#about-us').slideToggle(1900);
   });
 
   function reset() {
     $('.container').hide();
-    $('.nav-menu').slideUp(350);
+    $('.nav-menu').slideToggle(500);
   }
+
+  // $('#login-button').on('click', function() {
+  // $('.login-form container').show();
+  // });
+
   let user_id = 1;
 
   const gameView = {};
@@ -71,6 +78,7 @@ var app = app || {};
     reset();
     $('.search-results').show();
     $('#search-list').empty();
+    $('.nav-menu').hide();
 
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
     $('.add-game').on('click', function(event) {
