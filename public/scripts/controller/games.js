@@ -1,7 +1,7 @@
 'use strict';
 
 var app = app || {};
-var __API_URL__ = 'http://localhost:3000';
+
 
 (function(module) {
   function errorCallback(err) {
@@ -19,13 +19,10 @@ var __API_URL__ = 'http://localhost:3000';
   };
 
   Game.all = [];
+  
+  let newID;
 
   Game.loadAll = rows => Game.all = rows.map(game => new Game(game));
-  Game.fetchAll = callback =>
-    $.get(`${__API_URL__}/api/v1/games`)
-      .then(Game.loadAll)
-      .then(callback)
-      .catch(errorCallback);
 
   Game.createGame = newGame =>
     $.post(`${__API_URL__}/games`, newGame)
@@ -37,22 +34,35 @@ var __API_URL__ = 'http://localhost:3000';
       // .then(() => page('/games'))
       .catch(errorCallback);
 
-  Game.update = (game, gameId) =>
-    $.ajax({
-      url: `${__API_URL__}/api/v1/games/${gameId}`,
-      method: 'PUT',
-      data: game,
-    })
-      .then(() => page(`/games/${gameId}`))
-      .catch(errorCallback)
+  Game.createUser = newUser =>
+    $.post(`${__API_URL__}/users`, newUser)
+      .then(console.log)
+      .catch(errorCallback);
 
-  Game.destroy = id =>
-    $.ajax({
-      url: `${__API_URL__}/api/v1/games/${id}`,
-      method: 'DELETE',
-    })
-      .then(() => page('/'))
-      .catch(errorCallback)
+  Game.storeUserInfo = (username) =>
+    $.get(`${__API_URL__}/users?username=${username}`)
+      .then(results => newID = results[0].user_id)
+      .then(newID => localStorage.setItem('user_id', JSON.stringify(newID)))
+      .then(alert('Thanks for joining us. Game on!'))
+      .then(()=> page('/'))
+      .catch(errorCallback);
+
+  // Game.update = (game, gameId) =>
+  //   $.ajax({
+  //     url: `${__API_URL__}/api/v1/games/${gameId}`,
+  //     method: 'PUT',
+  //     data: game,
+  //   })
+  //     .then(() => page(`/games/${gameId}`))
+  //     .catch(errorCallback)
+
+  // Game.destroy = id =>
+  //   $.ajax({
+  //     url: `${__API_URL__}/api/v1/games/${id}`,
+  //     method: 'DELETE',
+  //   })
+  //     .then(() => page('/'))
+  //     .catch(errorCallback)
 
   Game.searchResults = (gameSearch, callback) =>
     $.get(`${__API_URL__}/`, gameSearch)

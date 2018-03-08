@@ -11,16 +11,20 @@ var app = app || {};
     $('.container').hide();
     $('.nav-menu').slideUp(350);
   }
-  let user_id = 1;
+
+  //app.user_id = JSON.parse(localStorage.getItem(user_id));
 
   const gameView = {};
   let newGame;
   let newRecord = {};
+  let user_id;
+
 
   //initialize the search form
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
+    $('.login-form').show();
 
     $('.form').on('submit', function(event){
       event.preventDefault();
@@ -87,6 +91,7 @@ var app = app || {};
       }
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
+      user_id = JSON.parse(localStorage.getItem(user_id));
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
