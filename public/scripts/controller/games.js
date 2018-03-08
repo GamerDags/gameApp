@@ -151,7 +151,6 @@ const platformIdNameList = {
 
 
 
-
 (function(module) {
   function errorCallback(err) {
     console.error(err);
