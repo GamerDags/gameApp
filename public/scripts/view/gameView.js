@@ -11,8 +11,11 @@ var app = app || {};
     $('.container').hide();
     $('.nav-menu').slideUp(350);
   }
+  let user_id = 1;
 
   const gameView = {};
+  let newGame;
+  let newRecord = {};
 
   //initialize the search form
   gameView.initSearchForm = function() {
@@ -70,8 +73,31 @@ var app = app || {};
     $('#search-list').empty();
 
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
-    $('.detail-button a').text('Add to list').attr('href', '/myList');
-    //$('.detail-button').on('click', function(e) {needs filled in}
+    $('.add-game').on('click', function(event) {
+      let selectedGame = parseInt(event.target.value);
+      console.log(selectedGame);
+      for(let i in app.Game.all){
+        console.log(app.Game.all[i].game_id);
+        if(app.Game.all[i].game_id === selectedGame){
+          console.log(app.Game.all[i]+' is value of [i]');
+          newGame = app.Game.all[i];
+          console.log(newGame);
+          // console.log(newGame);
+        }
+      }
+      console.log(newGame, 'you got it');
+      module.Game.createGame(newGame);
+      newRecord = {
+        user_id: user_id,
+        game_id: selectedGame
+      };
+      module.Game.createRecord(newRecord);
+    // TODO grab this.data.gameid
+    // filter game.all on gameid
+    // call function/ post that sends game
+    // call function/ make another post that sends user id and game id
+    //.then to let user know post was success
+    });
   };
 
   module.gameView = gameView;

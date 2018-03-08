@@ -27,9 +27,14 @@ var __API_URL__ = 'http://localhost:3000';
       .then(callback)
       .catch(errorCallback);
 
-  Game.create = game =>
-    $.post(`${__API_URL__}/games`, game)
-      .then(() => page('/games'))
+  Game.createGame = newGame =>
+    $.post(`${__API_URL__}/games`, newGame)
+      // .then(() => page('/games'))
+      .catch(errorCallback);
+
+  Game.createRecord = newRecord =>
+    $.post(`${__API_URL__}/userGames`, newRecord)
+      // .then(() => page('/games'))
       .catch(errorCallback);
 
   Game.update = (game, gameId) =>

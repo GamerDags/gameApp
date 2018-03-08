@@ -6,7 +6,7 @@ const cors = require('cors');
 const pg = require('pg');
 const bodyParser = require('body-parser').urlencoded({extended: true});
 const superagent = require('superagent');
-const igdb = require('igdb-api-node').default;
+// const igdb = require('igdb-api-node').default;
 
 // Application Setup
 const app = express();
@@ -125,6 +125,7 @@ app.get('/mygames', (req, res) => {
   // .then(console.log);
     .catch(console.error);
 });
+//TODO fetch user info based on password username
 
 app.post('/login', bodyParser, (req,res) => {
   let {username, password} = req.body;
@@ -143,7 +144,7 @@ app.post('/games', bodyParser, (req,res) => {
     .catch(console.error);
 });
 
-app.post('/login', bodyParser, (req, res) => {
+app.post('/userGames', bodyParser, (req, res) => {
   console.log('hit postNewGame');
   let {user_id, game_id} = req.body;
   client.query('INSERT INTO userGames(user_id, game_id) VALUES ($1, $2);', 
@@ -179,10 +180,10 @@ function loadGamesDB() {
       table_id SERIAL,
       game_id INTEGER NOT NULL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
-      genres INTEGER, 
-      platforms INTEGER, 
-      esrb INTEGER, 
-      first_release_date INTEGER, 
+      genres VARCHAR(20), 
+      platforms VARCHAR(20), 
+      esrb VARCHAR(20), 
+      first_release_date VARCHAR(20), 
       image_url VARCHAR(255), 
       summary TEXT
     );`
