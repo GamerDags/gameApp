@@ -14,20 +14,23 @@ var app = app || {};
     $('.nav-menu').slideToggle(500);
   }
 
+  //app.user_id = JSON.parse(localStorage.getItem(user_id));
+
   // $('#login-button').on('click', function() {
   // $('.login-form container').show();
   // });
 
-  let user_id = 1;
-
   const gameView = {};
   let newGame;
   let newRecord = {};
+  let user_id;
+
 
   //initialize the search form
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
+    $('.login-form').show();
 
     $('.form').on('click', function(event){
       event.preventDefault();
@@ -103,6 +106,7 @@ var app = app || {};
       }
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
+      user_id = JSON.parse(localStorage.getItem(user_id));
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
