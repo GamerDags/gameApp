@@ -45,18 +45,29 @@
 <body>
   <!-- Nav Menu -->
   <header class="header">
-    <h1 href="/" id="gameTitle">this is fine.</h1>
-    <nav class= "icon-menu">
-      <i class="fas fa-bars fa-2x"></i>
    
-      <ul class="nav-menu">
-        <li href="/"><div class="nav-menu" id="home-button">Home</div></li>
-        <li href="/"><div class="nav-menu" id="login-button">My Games/Login</div></li>
-        <li href="/aboutus"><div class="nav-menu" id="about-us">About Us</li>
-      </ul>
-    </nav>
+    <h1 href="/" id="gameTitle">gameUp</h1>
+   
+    <div class="nav">
+      <div class="nav-button" id="nav-button">
+        <!-- <div></div> -->
+          <span class="hamburger" id="ham"></span>
+          <span class="hamburger" id="bur"></span>
+          <span class="hamburger" id="ger"></span>
+          <!-- <i class="fas fa-bars fa-2x"></i> -->
+      </div>
+      
+      <div class="nav-dropdown">
+        <ul>
+          <li class="menu" id="home"><a href= "/">Home</a></li>
+          <li class="menu" id="login"><a href= "/mygames">My Games/Login</a></li>
+          <li class="menu" id="about"><a href= "/about">About the Team</a></li>
+        </ul>
+      </div>
+    </div>
 
   </header>
+  
   <section class"login container">
     <form class="login-form container">
       <div class="box">
@@ -65,7 +76,7 @@
         <input name="userName" type="text" placeholder="Enter User Name">
         <button id="login" type="submit">Login</button>
 
-      </div>
+      <!-- </div> -->
     </form>
   </section>
 
@@ -120,79 +131,80 @@
     <div><button id="form-button" type="submit">SEARCH</button></div>
     </div>
     </form>
-  </section>
-
-  <section class="search-results container">
-    <h2 class="view-title">RESULTS</h2>
-    
-      <section class="game-list">
-        <div id="search-list"></div>
-      </section>
     </section>
 
-    <section class="myGames container">
-      <h2 class="view-title">Results</h2>
+    <section class="search-results container">
+      <h2 class="view-title">RESULTS</h2>
       
         <section class="game-list">
-          <div id="myGames-list"></div>
+          <div id="search-list"></div>
         </section>
       </section>
 
-  <section class="detail-view container">
-    <section class="game-detail"></section>
-  </section>
+      <section class="myGames container">
+        <h2 class="view-title">Results</h2>
+        
+          <section class="game-list">
+            <div id="myGames-list"></div>
+          </section>
+        </section>
 
-  <section class="about-us container">
-    <h3 id="about-view">Meet The Team</h3>
-      <div class="about-div">
-        <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
-        <h4>Jeremy Crawford</h4>
-        <a href="https://www.linkedin.com/in/jeremyfcrawford" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
-        <a href="https://github.com/jeremyCtown" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-      </div>
+    <section class="detail-view container">
+      <section class="game-detail"></section>
+    </section>
+
+    <section class="about-us container">
+      <h3 id="about-view">Meet The Team</h3>
         <div class="about-div">
           <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
-          <h4>Mario Flores Jr.</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <a href="https://www.linkedin.com/in/mariofloresjr" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
-        <a href="https://github.com/mario4821" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
-      </div>
-      <div class="about-div">
-        <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
-        <h4>Zachary Schumpert</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <a href="https://www.linkedin.com/in/zachary-schumpert" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
-        <a href="https://github.com/buphnezz" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+          <h4>Jeremy Crawford</h4>
+          <a href="https://www.linkedin.com/in/jeremyfcrawford" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+          <a href="https://github.com/jeremyCtown" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
+          <div class="about-div">
+            <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+            <h4>Mario Flores Jr.</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="https://www.linkedin.com/in/mariofloresjr" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+          <a href="https://github.com/mario4821" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
         </div>
         <div class="about-div">
           <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
-          <h4>Josh West</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <a href="https://www.linkedin.com/in/josh-west" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
-        <a href="https://github.com/joshwest27" target="_blank"><img src="img/githubicon.png"alt="github" height="30px"></a>
-    </div>
-  </section>
+          <h4>Zachary Schumpert</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="https://www.linkedin.com/in/zachary-schumpert" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+          <a href="https://github.com/buphnezz" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+          </div>
+          <div class="about-div">
+            <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+            <h4>Josh West</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a href="https://www.linkedin.com/in/josh-west" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+          <a href="https://github.com/joshwest27" target="_blank"><img src="img/githubicon.png"alt="github" height="30px"></a>
+      </div>
+    </section>
 
-  <section class="error-view container">
-      <h2 class="view-title">Poop... that didn't work</h2>
-      <section id="error-message"></section>
-  </section>
+    <section class="error-view container">
+        <h2 class="view-title">Poop... that didn't work</h2>
+        <section id="error-message"></section>
+    </section>
 
-  </main>
-  <footer>
+    </main>
+    <footer>
+<!-- Let's put something in here -->
+    </footer>
 
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-<script src="/scripts/controller/games.js"></script>
-<script src="/scripts/view/gameView.js"></script>
-<script src="/scripts/view/myListView.js"></script>
-<script src="/scripts/view/errorView.js"></script>
-<script src="/scripts/view/routes.js"></script>
-<!-- <script>app.gameView.initSearchForm()</script> -->
-<!-- <script>app.gameView.initAboutUs()</script> -->
-</body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="/scripts/controller/games.js"></script>
+    <script src="/scripts/view/gameView.js"></script>
+    <script src="/scripts/view/myListView.js"></script>
+    <script src="/scripts/view/errorView.js"></script>
+    <script src="/scripts/view/routes.js"></script>
+    <!-- <script>app.gameView.initSearchForm()</script> -->
+    <!-- <script>app.gameView.initAboutUs()</script> -->
+  </body>
 </html>

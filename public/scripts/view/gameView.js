@@ -1,25 +1,20 @@
 'use strict';
 var app = app || {};
 
-$('.icon-menu').on('click', function(event) {
-  let x = $('.nav-menu');
-  $('.nav-menu').style.display === 'none' ? $('.nav-menu').style.display = 'block': $('.nav-menu').style.display = 'none';
-});
-
-// function myFunction() {
-//   var x = $('.nav-menu');
-//   if (x.style.display === "none") {
-//       x.style.display = "block";
-//   } else {
-//       x.style.display = "none";
-//   }
-// }
 
 (function(module) {
 
+  $( '.nav-button' ).click(function(){
+    // $('.nav-dropdown').slideToggle(350).then(
+    $('.nav-dropdown').toggleClass('expand');
+    $('.hamburger').toggleClass('no-btn');
+  });
+
   function reset() {
     $('.container').hide();
-    $('.nav-menu').slideUp(350);
+    $('.nav-dropdown').hide();
+    $('.nav-dropdown').removeClass('expand');
+    $('.hamburger').removeClass('no-btn');
   }
 
   //app.user_id = JSON.parse(localStorage.getItem(user_id));
@@ -34,8 +29,6 @@ $('.icon-menu').on('click', function(event) {
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
-    $('.login-form').show();
-    $('.icon-menu').show();
 
     $('.form').on('submit', function(event){
       event.preventDefault();
@@ -113,12 +106,13 @@ $('.icon-menu').on('click', function(event) {
       };
       console.log(newRecord);
       module.Game.createRecord(newRecord);
-    // TODO grab this.data.gameid
-    // filter game.all on gameid
-    // call function/ post that sends game
-    // call function/ make another post that sends user id and game id
-    //.then to let user know post was success
+
     });
+  };
+
+  gameView.initAboutUs = function() {
+    reset();
+    $('.about-us').show();
   };
 
   module.gameView = gameView;
