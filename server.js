@@ -13,7 +13,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL;
 const DATABASE_URL = process.env.DATABASE_URL;
-const TOKEN = process.env.TOKEN;
 const API_KEY = 'd5f8b5029dfc0e40ac54647a962a9e42';
 
 const client = new pg.Client(DATABASE_URL);
@@ -21,14 +20,19 @@ client.connect();
 
 //Application Middleware
 app.use(cors());
+app.use(express.static('./public'));
 
 //API Endpoints
-app.get('/', (req, res) => {
+app.get('/'), (req, res) => {
+  res.sendFile('index.html', {root: './public'});
+};
+
+
+app.get('/api/v1', (req, res) => {
 
   let query = '';
   //add query values from homepage form
 
-  //if(req.query.name) query += `&filter[name][eq]=${req.query.name}`;
   // if(req.query.age) query += `&filter[esrb.rating][eq]=${req.query.age}`;
   // if(req.query.genres) query += `&filter[genres][eq]=${req.query.genres}`;
   if(req.query.ratings) query += `&filter[total_rating_count][lte]=${req.query.ratings}&order=total_rating_count:desc`;
@@ -50,13 +54,14 @@ app.get('/', (req, res) => {
 
       let placeholderImage = 'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
 
+      // console.log(games.cover);
       return {
         title: name ? name : 'No title available',
         genres: genres ? genres[0] : 'No genres available',
         platforms: platforms ? platforms : 'No platforms available',
         esrb: esrb ? esrb.rating : 'No rating available',
         first_release_date: first_release_date ? first_release_date : 'No date available',
-        image_url: cover ? cover.smallThumbnail : placeholderImage,
+        coverUrl: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${games.cover.cloudinary_id}.jpg`: placeholderImage,
         summary: summary ? summary : 'No description available',
         game_id: id ? id : ''
 
@@ -67,71 +72,29 @@ app.get('/', (req, res) => {
     .catch(console.error);
 });
 
-// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
-// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
-//   console.log (url); This one works don't touch.
-
-// let query = '&filter[first_release_date][lt]=1104537600000&filter[rating][gte]=75&filter[genres][eq]=5';
-// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
-// console.log (url);
-
-// let query = '&filter[first_release_date][gt]=1500619813000&filter[rating][gte]=75&filter[genres][eq]=5';
-// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
-//   console.log (url);  changing the 'gt'/'lt' in first_release_date will work in this.
-
-// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
-// let url = `https://api-2445582011268.apicast.io/release_dates/?fields=*&filter[platform][eq]=48&order=date:asc&filter[date][gt]=1500619813000&expand=game`;
-
-//   console.log (url);
-//  this works but the let url appears to adjust the date the games are filtered by, not the let query.
-
-// let query = '&count?filter[release_dates.platform][eq]=72';
-// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,release_dates${query}&limit=25`;
-//   console.log (url);   trying to figur out filterin by date test 1.
-
-//get request from API
-// superagent.get(url)
-//   .set({'user-key': API_KEY})
-//   .then(res => console.log(res.body))//need to build from here
-//   .catch(console.error);
-
-//   let { name, genres, platforms, esrb.rating, first_release_date } = game.volumeInfo;
-
-//   let placeholderImage = 
-//   'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
-
-//   return {
-//     name: name ? name : 'No title available',
-//     genres: genres ? genres[0] : 'No genres available',
-//     platforms: platforms ? platforms : 'No platforms available',
-//     // esrb.rating: esrb.rating ? esrb.rating : 'No rating available',
-//     first_release_date: first_release_date ? first_release_date : 'No date available',
-//   }
-// }))
-// .then(game => res.send(game[0]))
-// .catch(console.error)
-// })
-
-// app.get('https://api-2445582011268.apicast.io/games', (req, res) => {
-//   let url = 'https://api-2445582011268.apicast.io/games/?fields=*${query}&limit=25&offset=0';
-//   superagent.get(url)
-//   .set({'user-key': API_KEY})
-// }
-
+//load list of games based on userID
 app.get('/mygames', (req, res) => {
   console.log('hit loadMyGames');
-  client.query('SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id JOIN users on userGames.user_id = users.user_id;')
+  client.query(`SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id JOIN users on userGames.${req.query.user_id} = users.${req.query.user_id};`)
     .then(results => res.send(results.rows))
   // .then(console.log);
     .catch(console.error);
 });
-//TODO fetch user info based on password username
 
-app.post('/login', bodyParser, (req,res) => {
-  let {username, password} = req.body;
-  client.query(`INSERT INTO users(username, password) VALUES ($1, $2);`, [username, password]
-  )
-    .then(results => res.sendStatus(201))
+//DONE fetch user info based on password username
+app.get('/users', (req,res) => {
+  console.log(req.query.username);
+  client.query(`SELECT user_id FROM users WHERE username='${req.query.username}';`)
+    .then(result => res.send(result.rows))
+    // .then(console.log)
+    .catch(console.error);
+});
+
+app.post('/users', bodyParser, (req,res) => {
+  let {newUser} = req.body;
+  console.log(req.body);
+  client.query(`INSERT INTO users(username) VALUES ($1);`, [newUser])
+    .then(results => res.send(201))
     .catch(console.error);
 });
 
@@ -188,7 +151,6 @@ function loadGamesDB() {
       summary TEXT
     );`
   )
-    .then(console.log)
     .catch(console.error);
 }
 
@@ -199,11 +161,10 @@ function loadUserDB() {
     CREATE TABLE IF NOT EXISTS
     users(
       user_id SERIAL PRIMARY KEY,
-      username VARCHAR(255) NOT NULL,
+      username VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255)
     );`
   )
-    .then(console.log)
     .catch(console.error);
 }
 
@@ -217,7 +178,6 @@ function userGamesDB() {
       played VARCHAR (20)
     );`
   )
-    .then(console.log)
     .catch(console.error);
 }
 loadGamesDB();
@@ -226,3 +186,54 @@ userGamesDB();
 
 app.get('*', (req, res) => res.redirect(CLIENT_URL));
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
+// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
+//   console.log (url); This one works don't touch.
+
+// let query = '&filter[first_release_date][lt]=1104537600000&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
+// console.log (url);
+
+// let query = '&filter[first_release_date][gt]=1500619813000&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,first_release_date${query}&limit=25`;
+//   console.log (url);  changing the 'gt'/'lt' in first_release_date will work in this.
+
+// let query = '&filter[rating][gte]=75&filter[genres][eq]=5';
+// let url = `https://api-2445582011268.apicast.io/release_dates/?fields=*&filter[platform][eq]=48&order=date:asc&filter[date][gt]=1500619813000&expand=game`;
+
+//   console.log (url);
+//  this works but the let url appears to adjust the date the games are filtered by, not the let query.
+
+// let query = '&count?filter[release_dates.platform][eq]=72';
+// let url = `https://api-2445582011268.apicast.io/games/?fields=name,genres,platforms,esrb.rating,release_dates${query}&limit=25`;
+//   console.log (url);   trying to figur out filterin by date test 1.
+
+//get request from API
+// superagent.get(url)
+//   .set({'user-key': API_KEY})
+//   .then(res => console.log(res.body))//need to build from here
+//   .catch(console.error);
+
+//   let { name, genres, platforms, esrb.rating, first_release_date } = game.volumeInfo;
+
+//   let placeholderImage = 
+//   'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
+
+//   return {
+//     name: name ? name : 'No title available',
+//     genres: genres ? genres[0] : 'No genres available',
+//     platforms: platforms ? platforms : 'No platforms available',
+//     // esrb.rating: esrb.rating ? esrb.rating : 'No rating available',
+//     first_release_date: first_release_date ? first_release_date : 'No date available',
+//   }
+// }))
+// .then(game => res.send(game[0]))
+// .catch(console.error)
+// })
+
+// app.get('https://api-2445582011268.apicast.io/games', (req, res) => {
+//   let url = 'https://api-2445582011268.apicast.io/games/?fields=*${query}&limit=25&offset=0';
+//   superagent.get(url)
+//   .set({'user-key': API_KEY})
+// }

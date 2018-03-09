@@ -1,26 +1,41 @@
 'use strict';
 var app = app || {};
 
-(function(module) {
+$('.icon-menu').on('click', function(event) {
+  let x = $('.nav-menu');
+  $('.nav-menu').style.display === 'none' ? $('.nav-menu').style.display = 'block': $('.nav-menu').style.display = 'none';
+});
 
-  $('.nav-menu').on('click', function(event) {
-    $('.nav-menu').slideToggle(350);
-  });
+// function myFunction() {
+//   var x = $('.nav-menu');
+//   if (x.style.display === "none") {
+//       x.style.display = "block";
+//   } else {
+//       x.style.display = "none";
+//   }
+// }
+
+(function(module) {
 
   function reset() {
     $('.container').hide();
     $('.nav-menu').slideUp(350);
   }
-  let user_id = 1;
+
+  //app.user_id = JSON.parse(localStorage.getItem(user_id));
 
   const gameView = {};
   let newGame;
   let newRecord = {};
+  let user_id;
+
 
   //initialize the search form
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
+    $('.login-form').show();
+    $('.icon-menu').show();
 
     $('.form').on('submit', function(event){
       event.preventDefault();
@@ -87,10 +102,16 @@ var app = app || {};
       }
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
+      user_id = JSON.parse(localStorage.user_id);
+      console.log(localStorage.user_id);
+      console.log(user_id, 'line 1');
+      user_id = parseInt(user_id);
+      console.log(user_id, 'line 2');
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
       };
+      console.log(newRecord);
       module.Game.createRecord(newRecord);
     // TODO grab this.data.gameid
     // filter game.all on gameid
