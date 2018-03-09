@@ -16,7 +16,7 @@
   <script id="game-list-template" type="text/x-handlebars-template">
   <section class="game-items container" data-gameid={{game_id}}>
     <div class="game-container">
-      <img id="cover" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+      <img id="image_url" src='{{coverUrl}}'>
       <!-- <div class="game-overlay"> -->
         <h3>{{title}}</h3>
         <p>{{platforms}}</p>
@@ -47,24 +47,28 @@
 <body>
   <!-- Nav Menu -->
   <header class="header">
-    <div id="header-bar">
-      <i class="fas fa-bars fa-2x"></i>
-      <h1 href="/" id="gameTitle">gameUp</h1>
-    </div>
-    <nav class= "nav container">
-    <a href="/"><div class="nav-menu" id="home-button">Home</div></a>
-    <br>
-    <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a></nav>
+    <h1 href="/" id="gameTitle">gameUp</h1>
+    <nav class= "icon-menu">
+        <i class="fas fa-bars fa-2x"></i>
+    </nav>
+      
+      <a href="/"><div class="nav-menu" id="home-button">Home</div></a><br>
+      <a href="/"><div class="nav-menu" id="login-button">My Games/Login</div></a><br>
+      <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
+
   </header>
-  <section>
+  <section class"login-container">
     <form class="login-form container">
       <div class="box">
-        <label for="userName">User Name</label>
-        <input id="userName" name="userName" type="text">
+
+        <!-- <label for="userName"></label> -->
+        <input name="userName" type="text" placeholder="Enter User Name">
         <button id="login" type="submit">Login</button>
+
       </div>
     </form>
   </section>
+
   <main>
   <section class="form container">
     <h2 id="destiny">Choose Your Destiny</h2>
@@ -119,7 +123,7 @@
   </section>
 
   <section class="search-results container">
-    <h2 class="view-title">Results</h2>
+    <h2 class="view-title">RESULTS</h2>
     
       <section class="game-list">
         <div id="search-list"></div>
@@ -139,26 +143,35 @@
   </section>
 
   <section class="about-us container">
-    <h3 class="about-view">Meet the team.</h3>
-    <div class="top">
-      <div>
+    <h3 id="about-view">Meet The Team</h3>
+      <div class="about-div">
+        <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
         <h4>Jeremy Crawford</h4>
-        <img src="img/.png">
-        <p>about Jeremy</p>
-        <h4>Mario Flores</h4>
-        <img src="img/.png">
-        <p>about Mario</p>
+        <a href="https://www.linkedin.com/in/jeremyfcrawford" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+        <a href="https://github.com/jeremyCtown" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
       </div>
-    </div>
-    <div class="bottom">
-      <div>
-      <h4>Zachary Schumpert</h4>
-        <img src="img/.png">
-        <p>about Zachary</p>
-      <h4>Josh West</h4>
-        <img src="img/.png">
-        <p>about Josh</p>
-    </div>
+        <div class="about-div">
+          <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+          <h4>Mario Flores Jr.</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a href="https://www.linkedin.com/in/mariofloresjr" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+        <a href="https://github.com/mario4821" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+      </div>
+      <div class="about-div">
+        <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+        <h4>Zachary Schumpert</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a href="https://www.linkedin.com/in/zachary-schumpert" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+        <a href="https://github.com/buphnezz" target="_blank"><img src="img/githubicon.png" alt="github" height="30px"></a>
+        </div>
+        <div class="about-div">
+          <img id="profile" src='http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg'>
+          <h4>Josh West</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a href="https://www.linkedin.com/in/josh-west" target="_blank"><img src="img/linkedinicon.png" alt="linkedin" height="30px"></a>
+        <a href="https://github.com/joshwest27" target="_blank"><img src="img/githubicon.png"alt="github" height="30px"></a>
     </div>
   </section>
 
@@ -180,5 +193,6 @@
 <script src="/scripts/view/errorView.js"></script>
 <script src="/scripts/view/routes.js"></script>
 <!-- <script>app.gameView.initSearchForm()</script> -->
+<!-- <script>app.gameView.initAboutUs()</script> -->
 </body>
 </html>
