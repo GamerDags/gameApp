@@ -6,6 +6,11 @@ var __API_URL__ = 'http://localhost:3000';
 
 
 (function(module) {
+
+  $( '.details-button' ).click(function(){
+    $('.summary').toggleClass('expandSummary');
+  });
+
   function errorCallback(err) {
     console.error(err);
     module.errorView.initErrorPage(err);
@@ -28,24 +33,20 @@ var __API_URL__ = 'http://localhost:3000';
 
   Game.createGame = newGame =>
     $.post(`${__API_URL__}/games`, newGame)
-      // .then(() => page('/games'))
       .catch(errorCallback);
 
   Game.createRecord = newRecord =>
     $.post(`${__API_URL__}/userGames`, newRecord)
-      // .then(() => page('/games'))
       .catch(errorCallback);
 
   Game.createUser = newUser =>
     $.post(`${__API_URL__}/users`, newUser)
-      .then(console.log)
       .catch(errorCallback);
 
   Game.storeUserInfo = (username) =>
     $.get(`${__API_URL__}/users?username=${username}`)
       .then(results => newID = results[0].user_id)
       .then(newID => localStorage.setItem('user_id', JSON.stringify(newID)))
-      .then(alert('Thanks for joining us. Game on!'))
       .then(()=> page('/'))
       .catch(errorCallback);
 
@@ -58,17 +59,16 @@ var __API_URL__ = 'http://localhost:3000';
   //     .then(() => page(`/games/${gameId}`))
   //     .catch(errorCallback)
 
-  // Game.destroy = id =>
+  // Game.destroy = (deleteGame) =>
   //   $.ajax({
-  //     url: `${__API_URL__}/api/v1/games/${id}`,
+  //     url: `${__API_URL__}/userGames?user_id=${deleteGame.user_id}&game_id=${deleteGame.game_id}`,
   //     method: 'DELETE',
   //   })
-  //     .then(() => page('/'))
+  //     .then(() => page('/mygames'))
   //     .catch(errorCallback)
 
   Game.searchResults = (gameSearch, callback) =>
     $.get(`${__API_URL__}/api/v1`, gameSearch)
-      // .then(result => console.log(result))
       .then(Game.loadAll)
       .then(callback)
       .catch(errorCallback);

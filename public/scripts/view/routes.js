@@ -1,5 +1,10 @@
 'use strict';
 
+$( '.details-button' ).click(function(){
+  $('.summary').toggleClass('expandSummary');
+});
+
+
 page('/', () => app.gameView.initSearchForm());
 
 page('/mygames', () => app.myGamesView.getUserInfo());
