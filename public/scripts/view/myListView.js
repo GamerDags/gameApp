@@ -1,5 +1,5 @@
 'use strict';
- 
+
 var app = app || {};
 var __API_URL__ = 'http://localhost:3000';
 
@@ -26,28 +26,29 @@ var __API_URL__ = 'http://localhost:3000';
   MyGames.prototype.toHtml = function() {
     let template = Handlebars.compile($('#game-list-template').text());
     return template(this);
-  }
+  };
 
   MyGames.all = [];
 
   MyGames.loadAll = rows => MyGames.all = rows.map(game => new MyGames(game));
 
   MyGames.fetchMyGames = (user_id) =>
-    $.get(`${__API_URL__}/mygames?username=${user_id}`)
+    $.get(`${__API_URL__}/mygames?user_id=${user_id}`)
       .then(MyGames.loadAll)
       .then(myGamesView.initMyGames())
       .catch(app.errorCallback);
 
-  function getUserInfo() {
+  myGamesView.getUserInfo = function() {
     if (localStorage.username && localStorage.user_id) {
-      user_id = JSON.parse(localStorage.getItem(user_id));
+      user_id = JSON.parse(localStorage.user_id);
+      user_id = parseInt(user_id);
       username= JSON.parse(localStorage.getItem(username));
-      
+      console.log(user_id);
       MyGames.fetchMyGames(user_id);
     } else {
       logIn();
     }
-  }
+  };
 
   function logIn() {
     $('.login-form').show();
@@ -69,12 +70,11 @@ var __API_URL__ = 'http://localhost:3000';
     reset();
     $('.myGames').show();
     $('#myGames-list').empty();
-    MyGames.fetchMyGames();
 
     MyGames.all.map(game =>$('#myGames-list').append(game.toHtml()));
   };
 
-  getUserInfo();
+  myGamesView.getUserInfo();
   module.MyGames = MyGames;
   module.myGamesView = myGamesView;
 })(app);
