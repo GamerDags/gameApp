@@ -30,17 +30,8 @@ var app = app || {};
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
-    $('.login-form').show();
 
-    $('.form').on('click', function(event){
-      event.preventDefault();
-
-        //about me
-  gameView.initAboutUs = function() {
-    reset();
-    $('.about-us').show();
-
-    $('.about-us').on('click', function(event){
+    $('.form').on('submit', function(event){
       event.preventDefault();
 
       //if statements checking for value
@@ -85,6 +76,10 @@ var app = app || {};
     });
   };
 
+  gameView.initAboutUs = function() {
+    reset();
+    $('.about-us').show();
+
   gameView.initResultsPage = function() {
     reset();
     $('.search-results').show();
@@ -107,10 +102,7 @@ var app = app || {};
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
       user_id = JSON.parse(localStorage.user_id);
-      console.log(localStorage.user_id);
-      console.log(user_id, 'line 1');
       user_id = parseInt(user_id);
-      console.log(user_id, 'line 2');
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
