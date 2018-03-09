@@ -61,7 +61,7 @@ app.get('/api/v1', (req, res) => {
         platforms: platforms ? platforms : 'No platforms available',
         esrb: esrb ? esrb.rating : 'No rating available',
         first_release_date: first_release_date ? first_release_date : 'No date available',
-        coverUrl: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${games.cover.cloudinary_id}.jpg`: placeholderImage,
+        cover_url: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${games.cover.cloudinary_id}.jpg`: placeholderImage,
         summary: summary ? summary : 'No description available',
         game_id: id ? id : ''
 
@@ -75,7 +75,7 @@ app.get('/api/v1', (req, res) => {
 //load list of games based on userID
 app.get('/mygames', (req, res) => {
   console.log('hit loadMyGames');
-  client.query(`SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id JOIN users on userGames.${req.query.user_id} = users.${req.query.user_id};`)
+  client.query(`SELECT * FROM games JOIN userGames ON games.game_id = userGames.game_id WHERE userGames.user_id = ${req.query.user_id};`)
     .then(results => res.send(results.rows))
   // .then(console.log);
     .catch(console.error);
@@ -100,9 +100,9 @@ app.post('/users', bodyParser, (req,res) => {
 
 app.post('/games', bodyParser, (req,res) => {
   console.log('hit insertNewGame');
-  let {game_id, title, genres, platforms, esrb, first_release_date, image_url, summary} = req.body;
-  client.query(`INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, image_url, summary) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
-    [game_id, title, genres, platforms, esrb, first_release_date, image_url, summary])
+  let {game_id, title, genres, platforms, esrb, first_release_date, cover_url, summary} = req.body;
+  client.query(`INSERT INTO games(game_id, title, genres, platforms, esrb, first_release_date, cover_url, summary) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
+    [game_id, title, genres, platforms, esrb, first_release_date, cover_url, summary])
     .then(results => res.sendStatus(201))
     .catch(console.error);
 });
@@ -110,30 +110,27 @@ app.post('/games', bodyParser, (req,res) => {
 app.post('/userGames', bodyParser, (req, res) => {
   console.log('hit postNewGame');
   let {user_id, game_id} = req.body;
-  client.query('INSERT INTO userGames(user_id, game_id) VALUES ($1, $2);', 
-    [user_id, game_id])
+  client.query('INSERT INTO userGames(user_id, game_id, played) VALUES ($1, $2, $3);', 
+    [user_id, game_id, false])
     .then(()=> res.sendStatus(201))
     .catch(console.error);
 });
 
-app.put('/mygames', bodyParser, (req, res) => {
-  console.log('hit gamePlayed');
-  let {played} = req.body;
-  client.query(`UPDATE userGames SET played=$1`,
-    [played])
-    .then(() => res.sendStatus(204))
-    .catch(console.error);
+// app.put('/mygames', bodyParser, (req, res) => {
+//   console.log('hit gamePlayed');
+//   let {played} = req.body;
+//   client.query(`UPDATE userGames SET played=$1`,
+//     [played])
+//     .then(() => res.sendStatus(204))
+//     .catch(console.error);
+// });
 
-});
-
-app.delete('/mygames', bodyParser, (req, res) => {
-  console.log('hit deleteMyGame');
-  let {user_id, game_id} = req.body;
-  client.query('DELETE FROM userGames WHERE user_id=$1 AND game_id=$2;', 
-    [user_id, game_id])
-    .then(()=> res.sendStatus(204))
-    .catch(console.error);
-});
+// app.delete('/userGames', (req, res) => {
+//   console.log('hit deleteMyGame');
+//   client.query(`DELETE FROM userGames WHERE user_id=${req.body.user_id} AND game_id=${req.body.game_id};`)
+//     .then(()=> res.sendStatus(204))
+//     .catch(console.error);
+// });
 
 function loadGamesDB() {
   console.log('hit loadGamesDB');
@@ -143,11 +140,11 @@ function loadGamesDB() {
       table_id SERIAL,
       game_id INTEGER NOT NULL PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
-      genres VARCHAR(20), 
-      platforms VARCHAR(20), 
-      esrb VARCHAR(20), 
+      genres VARCHAR(255), 
+      platforms VARCHAR(255), 
+      esrb VARCHAR(255), 
       first_release_date VARCHAR(20), 
-      image_url VARCHAR(255), 
+      cover_url VARCHAR(255), 
       summary TEXT
     );`
   )
