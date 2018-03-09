@@ -21,10 +21,14 @@ client.connect();
 
 //Application Middleware
 app.use(cors());
+app.use(express.static('./public'));
 
 //API Endpoints
-app.get('/', (req, res) => {
+app.get('/'), (req, res) => {
+  res.sendFile('index.html', {root: './public'});
+};
 
+app.get('/api/v1', (req, res) => {
   let query = '';
   //add query values from homepage form
 
