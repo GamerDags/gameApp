@@ -52,7 +52,7 @@ app.get('/api/v1', (req, res) => {
 
       let { name, genres, platforms, esrb, first_release_date, cover, summary, id } = games;
 
-      let placeholderImage = 'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
+      let placeholderImage = 'img/nocover.jpg';
 
       // console.log(games.cover);
       return {
