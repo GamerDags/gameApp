@@ -69,7 +69,7 @@ var __API_URL__ = 'http://localhost:3000';
     reset();
     $('.myGames').show();
     $('#myGames-list').empty();
-    fetchMyGames
+    MyGames.fetchMyGames();
 
     MyGames.all.map(game =>$('#myGames-list').append(game.toHtml()));
   };

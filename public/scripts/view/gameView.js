@@ -91,11 +91,16 @@ var app = app || {};
       }
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
-      user_id = JSON.parse(localStorage.getItem(user_id));
+      user_id = JSON.parse(localStorage.user_id);
+      console.log(localStorage.user_id);
+      console.log(user_id, 'line 1');
+      user_id = parseInt(user_id);
+      console.log(user_id, 'line 2');
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
       };
+      console.log(newRecord);
       module.Game.createRecord(newRecord);
     // TODO grab this.data.gameid
     // filter game.all on gameid
