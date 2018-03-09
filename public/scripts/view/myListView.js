@@ -4,13 +4,11 @@ var app = app || {};
 var __API_URL__ = 'http://localhost:3000';
 
 (function (module) {
-  $('.nav-menu').on('click', function(event) {
-    $('.nav-menu').slideToggle(350);
-  });
 
   function reset() {
     $('.container').hide();
-    $('.nav-menu').slideUp(350);
+    $('.nav-dropdown').removeClass('expand');
+    $('.hamburger').removeClass('no-btn');
   }
 
   const myGamesView = {};
@@ -51,6 +49,7 @@ var __API_URL__ = 'http://localhost:3000';
   };
 
   function logIn() {
+    reset();
     $('.login-form').show();
 
     $('.login-form').on('submit', function(event){
