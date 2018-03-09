@@ -16,18 +16,16 @@
   <script id="game-list-template" type="text/x-handlebars-template">
   <section class="game-items container" data-gameid={{game_id}}>
     <div class="game-container">
-      <img id="image_url" src='{{coverUrl}}'>
-      <!-- <div class="game-overlay"> -->
-        <h3>{{title}}</h3>
-        <p>{{platforms}}</p>
-        <!-- <div class="collapse" tabindex="1"> -->
-          <a>Click for Summary</a>
-          <!-- <div>{{summary}}</div>
-        </div> -->
-        <!-- <button onclick="myFunction()">Click Me</button> -->
-        <!-- <input type="button" value="DETAILS" onclick={{summary}}/> -->
-        <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p>
+      <img id="image_url" src='{{coverUrl}}'>       
+        <h3 id="oneGameTitle">{{title}}</h3>
+        <!-- <p>{{platforms}}</p> -->
         <button class="add-game" value={{game_id}}>Add To List</button>
+        <div class="collapse">
+          <input type="button" value="DETAILS" onclick={{summary}}>
+          <div>{{summary}}</div>
+        </div>
+        <!-- <input type="button" value="DETAILS" onclick={{summary}}/> -->
+        <!-- <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p> -->
       </div>
     </div>
   </div></script>
@@ -37,7 +35,7 @@
   <div class="game-container detail-view">
     <h3>{{game-title}}</h3>
     <p>{{game-company}}</p>
-    <img src="{{image_url}}">
+    <img src="{{coverUrl}}">
     <p>{{description}}</p>
     </div>
   </div>
@@ -47,14 +45,16 @@
 <body>
   <!-- Nav Menu -->
   <header class="header">
-    <h1 href="/" id="gameTitle">gameUp</h1>
+    <h1 href="/" id="gameTitle">this is fine.</h1>
     <nav class= "icon-menu">
-        <i class="fas fa-bars fa-2x"></i>
+      <i class="fas fa-bars fa-2x"></i>
+   
+      <ul class="nav-menu">
+        <li href="/"><div class="nav-menu" id="home-button">Home</div></li>
+        <li href="/"><div class="nav-menu" id="login-button">My Games/Login</div></li>
+        <li href="/aboutus"><div class="nav-menu" id="about-us">About Us</li>
+      </ul>
     </nav>
-      
-      <a href="/"><div class="nav-menu" id="home-button">Home</div></a><br>
-      <a href="/"><div class="nav-menu" id="login-button">My Games/Login</div></a><br>
-      <a href="/aboutus"><div class="nav-menu" id="about-us">About Us</div></a>
 
   </header>
   <section class"login container">

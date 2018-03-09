@@ -13,7 +13,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL;
 const DATABASE_URL = process.env.DATABASE_URL;
-const TOKEN = process.env.TOKEN;
 const API_KEY = 'd5f8b5029dfc0e40ac54647a962a9e42';
 
 const client = new pg.Client(DATABASE_URL);
@@ -21,14 +20,19 @@ client.connect();
 
 //Application Middleware
 app.use(cors());
+app.use(express.static('./public'));
 
 //API Endpoints
-app.get('/', (req, res) => {
+app.get('/'), (req, res) => {
+  res.sendFile('index.html', {root: './public'});
+};
+
+
+app.get('/api/v1', (req, res) => {
 
   let query = '';
   //add query values from homepage form
 
-  //if(req.query.name) query += `&filter[name][eq]=${req.query.name}`;
   // if(req.query.age) query += `&filter[esrb.rating][eq]=${req.query.age}`;
   // if(req.query.genres) query += `&filter[genres][eq]=${req.query.genres}`;
   if(req.query.ratings) query += `&filter[total_rating_count][lte]=${req.query.ratings}&order=total_rating_count:desc`;
@@ -50,13 +54,14 @@ app.get('/', (req, res) => {
 
       let placeholderImage = 'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
 
+      // console.log(games.cover);
       return {
         title: name ? name : 'No title available',
         genres: genres ? genres[0] : 'No genres available',
         platforms: platforms ? platforms : 'No platforms available',
         esrb: esrb ? esrb.rating : 'No rating available',
         first_release_date: first_release_date ? first_release_date : 'No date available',
-        coverUrl: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_thumb/${games.cover.cloudinary_id}.jpg`: placeholderImage,
+        coverUrl: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_cover_big/${games.cover.cloudinary_id}.jpg`: placeholderImage,
         summary: summary ? summary : 'No description available',
         game_id: id ? id : ''
 

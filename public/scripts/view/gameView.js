@@ -1,25 +1,28 @@
 'use strict';
 var app = app || {};
 
-(function(module) {
+$('.icon-menu').on('click', function(event) {
+  let x = $('.nav-menu');
+  $('.nav-menu').style.display === 'none' ? $('.nav-menu').style.display = 'block': $('.nav-menu').style.display = 'none';
+});
 
-  $('.icon-menu').on('click', function(event) {
-    event.preventDefault();
-    $('#home-button').slideToggle(200);
-    $('#login-button').slideToggle(850);
-    $('#about-us').slideToggle(1900);
-  });
+// function myFunction() {
+//   var x = $('.nav-menu');
+//   if (x.style.display === "none") {
+//       x.style.display = "block";
+//   } else {
+//       x.style.display = "none";
+//   }
+// }
+
+(function(module) {
 
   function reset() {
     $('.container').hide();
-    $('.nav-menu').slideToggle(500);
+    $('.nav-menu').slideUp(350);
   }
 
   //app.user_id = JSON.parse(localStorage.getItem(user_id));
-
-  // $('#login-button').on('click', function() {
-  // $('.login-form container').show();
-  // });
 
   const gameView = {};
   let newGame;
@@ -32,6 +35,7 @@ var app = app || {};
     reset();
     $('.form').show();
     $('.login-form').show();
+    $('.icon-menu').show();
 
     $('.form').on('submit', function(event){
       event.preventDefault();
@@ -78,16 +82,10 @@ var app = app || {};
     });
   };
 
-  gameView.initAboutUs = function() {
-    reset();
-    $('.about-us').show();
-  };
-
   gameView.initResultsPage = function() {
     reset();
     $('.search-results').show();
     $('#search-list').empty();
-    $('.nav-menu').hide();
 
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
     $('.add-game').on('click', function(event) {
@@ -105,7 +103,10 @@ var app = app || {};
       console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
       user_id = JSON.parse(localStorage.user_id);
+      console.log(localStorage.user_id);
+      console.log(user_id, 'line 1');
       user_id = parseInt(user_id);
+      console.log(user_id, 'line 2');
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
@@ -119,7 +120,6 @@ var app = app || {};
     //.then to let user know post was success
     });
   };
-  
 
   module.gameView = gameView;
 

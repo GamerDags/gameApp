@@ -209,7 +209,7 @@ const platformIdNameList = {
   //     .catch(errorCallback)
 
   Game.searchResults = (gameSearch, callback) =>
-    $.get(`${__API_URL__}/`, gameSearch)
+    $.get(`${__API_URL__}/api/v1`, gameSearch)
       // .then(result => console.log(result))
       .then(Game.loadAll)
       .then(callback)
