@@ -59,6 +59,10 @@ header {
   max-width: 331px;
 }
 
+#image_url {
+  min-width: 200px;
+}
+
 header {
   /* color: rgb(241, 192, 57); 
   text-shadow: -2px 2px #9900ff;

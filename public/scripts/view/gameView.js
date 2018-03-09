@@ -4,6 +4,7 @@ var app = app || {};
 (function(module) {
 
   $('.icon-menu').on('click', function(event) {
+    event.preventDefault();
     $('#home-button').slideToggle(200);
     $('#login-button').slideToggle(850);
     $('#about-us').slideToggle(1900);
@@ -30,6 +31,7 @@ var app = app || {};
   gameView.initSearchForm = function() {
     reset();
     $('.form').show();
+    $('.login-form').show();
 
     $('.form').on('submit', function(event){
       event.preventDefault();
@@ -79,6 +81,7 @@ var app = app || {};
   gameView.initAboutUs = function() {
     reset();
     $('.about-us').show();
+  };
 
   gameView.initResultsPage = function() {
     reset();

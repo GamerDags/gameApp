@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
         platforms: platforms ? platforms : 'No platforms available',
         esrb: esrb ? esrb.rating : 'No rating available',
         first_release_date: first_release_date ? first_release_date : 'No date available',
-        image_url: cover ? cover.smallThumbnail : placeholderImage,
+        coverUrl: games.cover.cloudinary_id ? `https://images.igdb.com/igdb/image/upload/t_thumb/${games.cover.cloudinary_id}.jpg`: placeholderImage,
         summary: summary ? summary : 'No description available',
         game_id: id ? id : ''
 

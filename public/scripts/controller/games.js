@@ -2,7 +2,7 @@
 
 var app = app || {};
 
-var __API_URL__ = 'https://gamerdags.herokuapp.com/';
+var __API_URL__ = 'http://localhost:3000';
 
 const platformIdNameList = {
   4: 'Playstation',
@@ -145,7 +145,7 @@ const platformIdNameList = {
   141: '',
   142: '',
   143: '',
-}
+};
 
 (function(module) {
   function errorCallback(err) {
