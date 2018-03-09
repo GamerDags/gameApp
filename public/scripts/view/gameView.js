@@ -5,10 +5,10 @@ var app = app || {};
 (function(module) {
 
   $( '.nav-button' ).click(function(){
-    // $('.nav-dropdown').slideToggle(350).then(
     $('.nav-dropdown').toggleClass('expand');
     $('.hamburger').toggleClass('no-btn');
   });
+
 
   function reset() {
     $('.container').hide();
@@ -77,10 +77,17 @@ var app = app || {};
 
   gameView.initResultsPage = function() {
     reset();
+
     $('.search-results').show();
     $('#search-list').empty();
 
     module.Game.all.map(game =>$('#search-list').append(game.toHtml()));
+
+    $( '.details-button' ).click(function(){
+      $('.game-container').toggleClass('expandGame')
+      $('.summary').toggleClass('expandSummary');
+    });
+
     $('.add-game').on('click', function(event) {
       let selectedGame = parseInt(event.target.value);
       console.log(selectedGame);
@@ -93,13 +100,9 @@ var app = app || {};
           // console.log(newGame);
         }
       }
-      console.log(newGame, 'you got it');
       module.Game.createGame(newGame);
       user_id = JSON.parse(localStorage.user_id);
-      console.log(localStorage.user_id);
-      console.log(user_id, 'line 1');
       user_id = parseInt(user_id);
-      console.log(user_id, 'line 2');
       newRecord = {
         user_id: user_id,
         game_id: selectedGame
