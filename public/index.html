@@ -16,31 +16,36 @@
   <script id="game-list-template" type="text/x-handlebars-template">
   <section class="game-items container" data-gameid={{game_id}}>
     <div class="game-container">
-      <img id="image_url" src='{{coverUrl}}'>       
+      <img class="cover_url" src='{{cover_url}}'>       
         <h3 id="oneGameTitle">{{title}}</h3>
         <!-- <p>{{platforms}}</p> -->
-        <button class="add-game" value={{game_id}}>Add To List</button>
-        <div class="collapse">
-          <input type="button" value="DETAILS" onclick={{summary}}>
-          <div>{{summary}}</div>
+        <button class="add-game" value={{game_id}}>ADD TO LIST</button>
+        <div class="details-button">
+          <input class="details" type="button" value="DETAILS">
+          <div class="summary">{{summary}}</div>
         </div>
-        <!-- <input type="button" value="DETAILS" onclick={{summary}}/> -->
-        <!-- <p class="detail-button"><a href="/games/{{game_id}}">View Details</a></p> -->
       </div>
     </div>
   </div></script>
 
-  <!-- Single Game View -->
-  <script id="game-detail-template" type="text/x-handlebars-template">
-  <div class="game-container detail-view">
-    <h3>{{game-title}}</h3>
-    <p>{{game-company}}</p>
-    <img src="{{coverUrl}}">
-    <p>{{description}}</p>
-    </div>
-  </div>
-</script>
-</head>
+  <!-- My Games -->
+  <script id="my-list-template" type="text/x-handlebars-template">
+    <section class="my-list container" data-gameid={{game_id}}>
+      <div class="my-game-container">
+        <img class="cover_url" src='{{cover_url}}'>       
+          <h3 id="oneGameTitle">{{title}}</h3>
+          <div>
+            <button class="delete-game" value={{game_id}}>DELETE FROM LIST</button>
+          </div>
+          <div class="details-button">
+            <input class="details" type="button" value="DETAILS">
+            <div class="summary">{{summary}}</div>
+          </div>
+          <input type="checkbox" id="game-played">
+          <label for="game-played" id="played-label">Played</label>
+        </div>
+      </div>
+    </div></script>
 
 <body>
   <!-- Nav Menu -->
@@ -50,11 +55,9 @@
    
     <div class="nav">
       <div class="nav-button" id="nav-button">
-        <!-- <div></div> -->
           <span class="hamburger" id="ham"></span>
           <span class="hamburger" id="bur"></span>
           <span class="hamburger" id="ger"></span>
-          <!-- <i class="fas fa-bars fa-2x"></i> -->
       </div>
       
       <div class="nav-dropdown">
@@ -76,7 +79,7 @@
         <input name="userName" type="text" placeholder="Enter User Name">
         <button id="login" type="submit">Login</button>
 
-      <!-- </div> -->
+      </div>
     </form>
   </section>
 
@@ -89,14 +92,6 @@
         <label for="q" class="choice"><input type="radio" name="q1" id="q1-1" value="2,3"> Kid</label>
         <label for="q" class="choice"><input type="radio" name="q1" id="q1-2" value="3,4,5"> Teen</label>
         <label for="q" class="choice"><input type="radio" name="q1" id="q1-3" value="1,2,3,4,5,6,7"> Adult(18+)</label>
-        <!-- <section>
-          <form id ="birthDate">
-            <label for="userBirthDate">Birthday:</label>
-            <input name="userBirthDate" id="date" type="date" required>
-
-            <button type="submit">Submit</button>
-          </form>
-        </section> -->
       <h3 class= "question">Why are you playing today?</h3>
         <label for="q" class="choice"><input type="radio" name="q2" id="q2-1" value="25"> Try something new</label><br>
         <label for="q" class="choice"><input type="radio" name="q2" id="q2-2" value="1"> Stretch my mind</label><br>
@@ -122,12 +117,6 @@
         <label for="q" class="choice"><input type="radio" name="q5" id="q5-2" value="75"> Yes</label>
         <label for="q" class="choice"><input type="radio" name="q5" id="q5-3" value="76"> No</label>
         <label for="q" class="choice"><input type="radio" name="q5" id="q5-4" value="90"> Disgusting...</label>
-      <!-- <li>question6</li>
-        <input class="radio" type="radio" name="q6">
-        <input class="radio" type="radio" name="q6">
-        <input class="radio" type="radio" name="q6">
-        <input class="radio" type="radio" name="q6">
-        <input class="radio" type="radio" name="q6"> -->
     <div><button id="form-button" type="submit">SEARCH</button></div>
     </div>
     </form>
@@ -142,7 +131,7 @@
       </section>
 
       <section class="myGames container">
-        <h2 class="view-title">Results</h2>
+        <h2 class="view-title">My Games</h2>
         
           <section class="game-list">
             <div id="myGames-list"></div>

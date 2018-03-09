@@ -102,10 +102,31 @@ a:link,a:visited {
   }
 }
 
-/* login container */
-
-/* .login, .login-form, .box {
-  width: 100%;
+/* my-game container */
+.my-game-container {
+  border: solid 3px rgba(7, 31, 167, 0.788);
+  height: 225px;
+  max-height: 500px;
+  width: 98%;
+  background-color: rgba(213, 202, 221, 0.7);
   margin: auto;
+}
+.my-list {
+  display: inline;
+  max-width: 331px;
+}
 
-} */
+.delete-game {
+  margin: 20px 0 20px 20px;
+}
+
+#game-played {
+  margin: 10px 0 20px 20px;
+  box-shadow: 1px 1px rgb(54, 54, 54);
+}
+
+#played-label {
+  font-size: 20px;
+  text-shadow: 1px 1px rgb(54, 54, 54);
+  margin-top: 2px;
+}

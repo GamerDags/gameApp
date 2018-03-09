@@ -16,13 +16,14 @@ var __API_URL__ = 'http://localhost:3000';
   let user_id;
   let username;
   let newUser = {};
+  let deleteGame = {};
 
   function MyGames(rawGameObj) {
     Object.keys(rawGameObj).forEach(key => this[key] = rawGameObj[key]);
   }
 
   MyGames.prototype.toHtml = function() {
-    let template = Handlebars.compile($('#game-list-template').text());
+    let template = Handlebars.compile($('#my-list-template').text());
     return template(this);
   };
 
@@ -32,8 +33,11 @@ var __API_URL__ = 'http://localhost:3000';
 
   MyGames.fetchMyGames = (user_id) =>
     $.get(`${__API_URL__}/mygames?user_id=${user_id}`)
-      .then(MyGames.loadAll)
-      .then(myGamesView.initMyGames())
+      .then(results => {
+        MyGames.loadAll(results);
+        console.log(results);
+        myGamesView.initMyGames();
+      })
       .catch(app.errorCallback);
 
   myGamesView.getUserInfo = function() {
@@ -51,6 +55,7 @@ var __API_URL__ = 'http://localhost:3000';
   function logIn() {
     reset();
     $('.login-form').show();
+    $('.login-form').off();
 
     $('.login-form').on('submit', function(event){
       event.preventDefault();
@@ -61,7 +66,6 @@ var __API_URL__ = 'http://localhost:3000';
       console.log(newUser);
       app.Game.createUser(newUser)
         .then(module.Game.storeUserInfo(username));
-      // .then(getUserInfo(username));
     });
   }
 
@@ -71,6 +75,19 @@ var __API_URL__ = 'http://localhost:3000';
     $('#myGames-list').empty();
 
     MyGames.all.map(game =>$('#myGames-list').append(game.toHtml()));
+
+    $( '.details-button' ).click(function(){
+      $('.my-game-container').toggleClass('expandGame');
+      $('.summary').toggleClass('expandSummary');
+    });
+
+    // $('.delete-button').on('click', function() {
+    //   deleteGame = {
+    //     user_id: user_id,
+    //     game_id: this.game_id
+    //   };
+    //   app.Game.destroy(deleteGame);
+    // });
   };
 
   myGamesView.getUserInfo();
