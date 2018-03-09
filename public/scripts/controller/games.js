@@ -32,7 +32,7 @@ const platformIdNameList = {
   28: '',
   29: 'Sega Genesis',
   30: '',
-  31: 
+  31: '',
   32: 'Sega Saturn',
   33: 'Game Boy',
   34: 'Android',

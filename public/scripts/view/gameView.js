@@ -124,6 +124,7 @@ var app = app || {};
     //.then to let user know post was success
     });
   };
+  
 
   module.gameView = gameView;
 
