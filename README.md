@@ -1,7 +1,7 @@
-## Game Up
+## gameUp
 301 Final Project
 
-In this day and age there are a plethora of video games to choose from.  In addition, there are multiple ways to access those games… from video game consoles, computers and hand held devices.  Also, where does one start? What game do you play?  Why do you want to play?  This is the problem we have solved with our Game Up web app! A user can select from a number of criteria to help them decide on the perfect game to play to fit their needs! 
+In this day and age there are a plethora of video games to choose from.  In addition, there are multiple ways to access those games… from video game consoles, computers and hand held devices.  Also, where does one start? What game do you play?  Why do you want to play?  This is the problem we have solved with gameUp! A user can select from a number of criteria to help them decide on the perfect game to play to fit their needs! 
 
 Experience the gameUp app here: https://gameup.herokuapp.com/.
 
